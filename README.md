@@ -45,7 +45,7 @@ SNS要素だけでは情報交換という意義があやふやな為、真剣�
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
-- インフラ：EWS(EC2),RDS
+- インフラ：AWS(EC2),RDS
 - IDE：Cloud9
 
 
