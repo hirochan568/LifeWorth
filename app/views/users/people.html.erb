@@ -1,0 +1,28 @@
+<div class="container px-5 px-sm-0">
+ <h2>会員一覧</h2>
+  <table class='table'>
+    <thead>
+          <tr>
+           <th>会員ID</th>
+           <th>氏名</th>
+           <th>ニックネーム</th>
+           <th>電話番号</th>
+           <th>email</th>
+           <th colspan="5"></th>
+          </tr>
+        </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= link_to users_my_page_path(@user) do %>
+          <%= user.name %></td>
+          <% end %>
+          <td><%= user.nickname %></td>
+          <td><%= user.telephone %></td>
+          <td><%= user.email %></td>
+          </tr>
+          <% end %>
+      </tbody>
+  </table>
+</div>

@@ -1,2 +1,44 @@
 class ApplicationController < ActionController::Base
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def after_sign_in_path_for(resource)
+    flash[:notice] = "ログインに成功しました"
+    if current_user.is_admin?
+      users_path(resource.id)
+    else
+      users_my_page_path(resource.id)
+    end
+  end
+
+  def after_sign_up_path_for(resource)
+    flash[:notice] = "登録に成功しました"
+     if current_user.is_admin?
+     users_path(resource.id)
+     else
+     users_my_page_path(resource.id)
+     end
+
+  # case resource
+  #   when is_admin == true
+  #     root_path
+  #   when is_admin == false
+  #     home_about_path
+  # end
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    if resource_or_scope != :is_admin
+      root_path
+    elsif resource_or_scope == :is_admin
+      home_about_path
+    end
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :nickname, :email, :telephone])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:name, :email])
+  end
+
 end

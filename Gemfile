@@ -85,3 +85,4 @@ group :test do
 end
 
 gem 'enum_help'
+gem 'sprockets'
