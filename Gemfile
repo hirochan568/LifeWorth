@@ -86,3 +86,4 @@ end
 
 gem 'enum_help'
 gem 'sprockets'
+gem 'seed-fu'

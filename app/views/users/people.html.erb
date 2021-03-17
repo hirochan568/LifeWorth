@@ -15,7 +15,7 @@
         <% @users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
-          <td><%= link_to users_my_page_path(@user) do %>
+          <td><%= link_to my_page_path(user) do %>
           <%= user.name %></td>
           <% end %>
           <td><%= user.nickname %></td>

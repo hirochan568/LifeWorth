@@ -11,9 +11,13 @@ Rails.application.routes.draw do
    end
 
   resources :users,only: [:index, :edit, :update]
-   get '/users/my_page', to: 'users#show'
+   get '/users/:id/my_page', to: 'users#show', as: 'my_page'
    get '/users/people', to: 'users#people'
-
+   
+  resources :blogss, only: [:new, :create, :index, :show, :destroy]
+  resources :reviews, only: [:new, :create, :index, :show, :destroy]
+  resources :quess, only: [:new, :create, :index, :show, :destroy]
+  
   root 'homes#top'
   get 'home/about' => 'homes#about'
   # resources :books do

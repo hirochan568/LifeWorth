@@ -1,12 +1,18 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_user
+
+
+  def set_user
+    # @user = ~
+  end
 
   def after_sign_in_path_for(resource)
     flash[:notice] = "ログインに成功しました"
     if current_user.is_admin?
       users_path(resource.id)
     else
-      users_my_page_path(resource.id)
+      my_page_path(resource.id)
     end
   end
 
@@ -15,13 +21,14 @@ class ApplicationController < ActionController::Base
      if current_user.is_admin?
      users_path(resource.id)
      else
-     users_my_page_path(resource.id)
+     my_page_path(resource.id)
      end
 
-  # case resource
-  #   when is_admin == true
+  # current_user.is_admin? ? root_path : home_about_path
+  # case current_user.is_admin?
+  #   when true
   #     root_path
-  #   when is_admin == false
+  #   when false
   #     home_about_path
   # end
   end

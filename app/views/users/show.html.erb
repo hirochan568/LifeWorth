@@ -10,11 +10,15 @@
 
 <%= link_to 'プロフィール編集画面へ', edit_user_path(@user) %>
 
-<% if current_user.is_admin? %>
+<br>
+current_user is admin? :<%= current_user.is_admin? %><br>
+current_user ID? <%= current_user.id %>
+
+<% if @user.is_admin? %>
   <%= render "users/admin-show" %>
-  <% else %>
+<% else %>
   <%= render "users/user-show" %>
-  <% end %>
+<% end %>
 
 
 
