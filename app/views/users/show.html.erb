@@ -1,26 +1,6 @@
-<p>MyPage 会員No,<%= @user.id %></p>
-<p>Welcome to <%= @user.name %>さん！！</p>
-
-<h4>ユーザー情報</h4>
-<%= @user.name %>
-<%= @user.nickname %>
-<%= @user.telephone %>
-<%= @user.email %>
-
-
-<%= link_to 'プロフィール編集画面へ', edit_user_path(@user) %>
-
-<br>
-current_user is admin? :<%= current_user.is_admin? %><br>
-current_user ID? <%= current_user.id %>
 
 <% if @user.is_admin? %>
   <%= render "users/admin-show" %>
 <% else %>
   <%= render "users/user-show" %>
 <% end %>
-
-
-
-
-<p>Find me in app/views/users/show.html.erb</p>

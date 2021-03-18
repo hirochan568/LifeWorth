@@ -1,2 +1,55 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-10 px-5 px-sm-0">
+    <%= form_with model: @user, url: user_path, local:true do |f| %>
+
+      <div class="d-inline-block m-5">
+        <h4 class="px-3 font-weight-bold", style="background-color: #eaf4fc">Member registration information</h4>
+      </div>
+
+      <div class="d-flex flex-row mt-1">
+        <div class="title">
+          <p>nickname</p>
+        </div>
+
+        <div class="d-flex">
+          <%= f.text_field :nickname, autofocus: true, autocomplete:"nickname", placeholder:"nanashi", class:'form2 form-control' %>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row mt-1">
+        <div class="title">
+          <p>電話番号</p>
+        </div>
+
+        <div class="d-flex ">
+          <%= f.text_field :telephone, autofocus: true, autocomplete:"telephone", placeholder:"0000000000", class:'form form-control' %>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row mt-1">
+        <div class="title">
+          <p>メールアドレス</p>
+        </div>
+
+        <div class="d-flex ">
+          <%= f.text_field :email, autofocus: true, autocomplete:"email", placeholder:"sample@example.com", class:'form form-control' %>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row mt-4">
+        <div class="title">
+          <p></p>
+        </div>
+
+        <div class="d-flex">
+          <button type="submit" class="btn btn-success btn-block btn-size mr-5">submit</button>
+        </div>
+
+      </div>
+
+    <% end %>
+
+    </div>
+  </div>
+</div>

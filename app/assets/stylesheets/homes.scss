@@ -1,3 +1,37 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//topのcss
+.row {
+  opacity: 0.8;
+}
+
+// .topword {
+//   opacity: ;
+// }
+
+.carousel-inner {
+  width: 100%;
+  height: 612px;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.65;
+}
+
+
+.topback {
+  background-image: image-url('cold.jpg');
+}
+
+//topここまで
+
+//aboutのcss
+.about-image{
+  width: 100%;
+  height: 300px;
+  background: url("about.jpg");
+  background-size: cover;
+  background-position: center;
+}
+//aboutここまで

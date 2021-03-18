@@ -1,11 +1,74 @@
+<div class= userback>
+<main role="main">
 
-投稿する
-ブログ
-レビュー
-質問
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <h2><div class="display-3">Welcome to Life Worth! </h2>
+      <h3>Dear <%= @user.name %></h3>
+      <p>Have you ever wanted to save a little bit of wisdom every day?
+         It is an app that allows you to share your wisdom with others who want to borrow the wisdom of others.
+         Let's get started!
+         It is a site where you can help someone and learn through SNS.
+      </p>
 
+      <h2>Your Profile</h2>
+      <h5>
+  <table class='table'>
+    <thead>
+          <tr>
+           <th>会員ID</th>
+           <th>氏名</th>
+           <th>ニックネーム</th>
+           <th>電話番号</th>
+           <th>email</th>
+           <th colspan="5"></th>
+          </tr>
+        </thead>
+      <tbody>
+        <tr>
+          <td><%= @user.id %></td>
+          <td><%= @user.name %></td>
+          <td><%= @user.nickname %></td>
+          <td><%= @user.telephone %></td>
+          <td><%= @user.email %></td>
+          </tr>
+      </tbody>
+  </table>
+      <% if @user == current_user %>
+      <p><%= link_to 'EDIT', edit_user_path(@user), class: "btn btn-primary btn-lg" %></p>
+      <% end %>
+    </div>
+  </div>
+  </div>
+  </div>
 
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h2>MyBlog</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>MyReview</h2>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>MyQuestion</h2>
+        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+      </div>
+    </div>
 
-マイブログ
-マイレビュー
-マイQustion
+    <hr>
+
+  </div> <!-- /container -->
+
+</main>
+
+<footer class="container">
+  <p>LifeWorth project</p>
+</footer>

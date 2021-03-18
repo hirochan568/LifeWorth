@@ -11,15 +11,21 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def update
+    @user = current_user
+    @user.update(user_params)
+    redirect_to  my_page_path, success: '登録に成功しました'
+  end
+
   def people
     @users = User.all
-    
+
 
   end
 
   private
 
-  def customer_params
+  def user_params
     params.require(:user).permit(:name, :nickname, :email, :telephone)
   end
 
