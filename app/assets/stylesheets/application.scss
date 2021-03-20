@@ -17,9 +17,15 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Chango&display=swap');
+header{
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+}
+
 .wrapper{
     min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
-    
+
     padding-bottom: 5px; /* ←フッターの高さを指定 */
     box-sizing: border-box;
     /* ↑ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定 */

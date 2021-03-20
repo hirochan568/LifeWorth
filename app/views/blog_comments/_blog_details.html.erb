@@ -1,0 +1,30 @@
+<!-- Comments Form -->
+<!--        <div class="card my-4">-->
+<!--          <h5 class="card-header">Leave a Comment:</h5>-->
+<!--          <div class="card-body">-->
+<!--            <form>-->
+<!--              <div class="form-group">-->
+<!--                <textarea class="form-control" rows="3"></textarea>-->
+<!--              </div>-->
+<!--              <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--            </form>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <!-- Single Comment -->
+        <div class="media mb-4">
+          <% blog.blog_comments.each do |blog_comment| %>
+          <div class="media-body">
+            <h5 class="mt-0"><%= blog_comment.user.name %></h5>
+
+
+            <%= blog_comment.comment %>
+            <%= blog_comment.created_at.strftime('%Y/%m/%d') %>
+            <% if blog_comment.user == current_user %>
+            <div class="comment-delete">
+            <%= link_to "Delete", blog_blog_comment_path(blog, blog_comment), method: :delete, class: "btn btn-sm btn-danger destroy_book" %>
+            </div>
+            <% end %>
+          </div>
+          <% end %>
+        </div>

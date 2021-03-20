@@ -12,13 +12,13 @@
       <% @blogs.each do |blog| %>
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
-          <img class="card-img-top" <%= attachment_image_tag @blog, :image %> alt="">
+          <img class="card-img-top" <%= attachment_image_tag blog, :image %> alt="">
           <div class="card-body">
-            <h4 class="card-title">blog.title</h4>
-            <p class="card-text">blog.body</p>
+            <h4 class="card-title"><%= blog.title %></h4>
+            <p class="card-text"><%= blog.body %></p>
           </div>
           <div class="card-footer">
-            <a href="#" class="btn btn-primary">Find Out More!</a>
+            <%= link_to 'Find Out More!', blog_details_path(blog), class: "btn btn-primary", role: "" %>
           </div>
         </div>
       </div>
