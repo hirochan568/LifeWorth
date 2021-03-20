@@ -14,7 +14,7 @@ Rails.application.routes.draw do
    get '/users/:id/my_page', to: 'users#show', as: 'my_page'
    get '/users/people', to: 'users#people'
 
-  resources :blogss, only: [:new, :create, :index, :show, :destroy]
+  resources :blogs, only: [:new, :create, :index, :show, :destroy]
   resources :reviews, only: [:new, :create, :index, :show, :destroy]
   resources :quess, only: [:new, :create, :index, :show, :destroy]
 

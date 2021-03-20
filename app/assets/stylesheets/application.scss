@@ -16,3 +16,29 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+.wrapper{
+    min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
+    
+    padding-bottom: 5px; /* ←フッターの高さを指定 */
+    box-sizing: border-box;
+    /* ↑ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定 */
+}
+
+.body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    position: absolute;
+}
+
+
+
+.footer-style {
+    // position: absolute;/* ←絶対位置 */
+    // bottom: 0;
+    /* 以下 背景色やテキストカラーなどはお好みで指定してください */
+    background-color: powderblue;
+    color: #fff;
+    text-align: center;
+}

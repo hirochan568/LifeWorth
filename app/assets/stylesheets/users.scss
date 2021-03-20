@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// mypageの背景
 .userback {
   background-image: image-url('book.jpg');
 
@@ -14,3 +15,17 @@
     opacity: 0.72;
 }
 
+// ここまでmypage
+.peopleback {
+  background-image: image-url('share.jpg');
+  background-size:100%;
+  background-position:center bottom;
+  width: 100%;
+  height: 100%;
+}
+// 文字の透過防止
+.bg-people {
+  height: 100%;
+  background: rgba(255,255,255,0.5);
+}
+// peopleの背景
