@@ -10,4 +10,7 @@ class User < ApplicationRecord
         has_many :blog_comments, dependent: :destroy
         has_many :review_comments, dependent: :destroy
         has_many :question_comments, dependent: :destroy
+        has_many :blog_favorites, dependent: :destroy
+        has_many :review_favorites, dependent: :destroy
+        has_many :question_favorites, dependent: :destroy
 end

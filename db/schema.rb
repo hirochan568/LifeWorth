@@ -10,23 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_123909) do
-
-  create_table "admins", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
+ActiveRecord::Schema.define(version: 2021_03_21_114909) do
 
   create_table "blog_comments", force: :cascade do |t|
     t.text "comment"
+    t.integer "user_id"
+    t.integer "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "blog_favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "blog_id"
     t.datetime "created_at", null: false
@@ -58,6 +52,13 @@ ActiveRecord::Schema.define(version: 2021_03_16_123909) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "question_favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text "title", null: false
     t.string "image_id"
@@ -72,6 +73,13 @@ ActiveRecord::Schema.define(version: 2021_03_16_123909) do
 
   create_table "review_comments", force: :cascade do |t|
     t.text "comment"
+    t.integer "user_id"
+    t.integer "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "review_favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "review_id"
     t.datetime "created_at", null: false

@@ -9,8 +9,14 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
-    @blog.save
-    redirect_to blog_details_path(@blog)
+    if  @blog.save
+      redirect_to user_blog_path(current_user)
+    else
+
+      @categories = Category.all
+      render :new
+    end
+
   end
 
   def index
@@ -19,9 +25,8 @@ class BlogsController < ApplicationController
   end
 
   def show
+    @blogs =  Blog.where(user_id: params[:id])
     @user = User.find(params[:id])
-    @blogs = @user.blogs
-
   end
 
   def details
@@ -42,7 +47,7 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @user = @blog.user
     if @blog.update(blog_params)
-      redirect_to blog_path(@user), notice: "You have updated book successfully."
+      redirect_to  user_blog_path(current_user), notice: "You have updated book successfully."
     else
       render "edit"
     end
@@ -51,7 +56,8 @@ class BlogsController < ApplicationController
   def destroy
     @blog = Blog.find(params[:id])
     @blog.destroy
-    redirect_back(fallback_location: root_path)
+    @user = @blog.user
+    redirect_to user_blog_path(@user)
   end
 
   private

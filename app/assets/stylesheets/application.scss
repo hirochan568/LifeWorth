@@ -48,3 +48,28 @@ header{
     color: #fff;
     text-align: center;
 }
+
+// detailsページの変更部分
+
+.comment{
+    width: 715px;
+    height: auto;
+    // 領域外にはみ出た部分の折り返し
+    overflow-wrap: break-word;
+}
+
+.detail-title{
+    // 領域外にはみ出た部分の折り返し
+    overflow-wrap: break-word;
+}
+
+
+.detail-content{
+    // 領域外にはみ出た部分の折り返し
+    overflow-wrap: break-word;
+}
+
+.blog-card{
+  padding-bottom: 0px; /* ←Mｙブログの高さを指定 */
+  margin-bottom: 15px;
+}

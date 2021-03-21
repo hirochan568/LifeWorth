@@ -12,10 +12,9 @@
         <!-- Author -->
         <p class="lead">
           by
-          <%= link_to @blog.user.name, user_blog_path(@user) %>
+          <%= link_to @blog.user.name, blog_path(@user) %>
         </p>
-        <p><%= @blog.blog_comments.count %> comment</p><%= render 'blog_favorites/blog_favorite', blog: @blog %>
-
+        <p><%= @blog.blog_comments.count %> comment</p>
         <hr>
 
         <!-- Date/Time -->

@@ -49,7 +49,7 @@
       <div class="col-md-4">
         <h2>MyBlog</h2>
         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <%= link_to 'MyBlog',blog_path(@user), class: "btn btn-secondary", role: "button" %>
+        <%= link_to 'MyBlog',user_blog_path(@user), class: "btn btn-secondary", role: "button" %>
         <%= link_to 'NEW',new_blog_path(current_user), class: "btn btn-secondary", role: "button" %>
 
       </div>

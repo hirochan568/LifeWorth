@@ -1,0 +1,2 @@
+module BlogFavoritesHelper
+end
