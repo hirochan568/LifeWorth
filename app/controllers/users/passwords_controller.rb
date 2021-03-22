@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
-  
+
   # ゲストユーザのパスワード更新・削除防止。。念のため
-  
+
   before_action :ensure_normal_user, only: :create
 
   def ensure_normal_user
@@ -11,7 +11,7 @@ class Users::PasswordsController < Devise::PasswordsController
       redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
     end
   end
-end
+
   # GET /resource/password/new
   # def new
   #   super
