@@ -73,3 +73,24 @@ header{
   padding-bottom: 0px; /* ←Mｙブログの高さを指定 */
   margin-bottom: 15px;
 }
+
+// indexの指定
+.card-body{
+    width: auto;
+    height: 500px;
+    // 領域外にはみ出た部分の折り返し
+
+}
+
+.cardwid{
+    overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.card-footer{
+    position: absolute;/*←絶対位置*/
+    bottom: 0; /*下に固定*/
+    padding: auto;
+    text-align: left;
+}

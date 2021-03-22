@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   # ↓デバイスにより生成
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
-    :sessions => 'users/sessions'
+    :sessions => 'users/sessions',
+    :passwords => 'users/passwords',
   }
 
   devise_scope :user do
@@ -40,6 +41,11 @@ Rails.application.routes.draw do
 
   root 'homes#top'
   get 'home/about' => 'homes#about'
+  
+  # ゲストユーザー作成用
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+  end
   # resources :books do
   #   resource :favorites, only: [:create, :destroy]
   #   resources :book_comments, only: [:create, :destroy]

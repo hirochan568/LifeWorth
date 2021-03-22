@@ -61,6 +61,8 @@
           <li>
             <%= link_to 'log in', new_user_session_path ,class: 'd-none d-lg-block nav-link'%>
           </li>
+          <li>
+            <<%= link_to 'guest log in', users_guest_sign_in_path, method: :post %>
         <% end %>
         </ul>
       </div>

@@ -1,4 +1,13 @@
 class UsersController < ApplicationController
+  # beforeアクションによりupdateとdestroyのみゲストか確かめる
+  before_action :ensure_normal_user, only: %i[update destroy]
+
+  def ensure_normal_user
+    if current_user.email == 'guest@example.com'
+      redirect_to root_path, alert: 'Guest users cannot be changed or deleted.'
+    end
+  end
+
   def index
     @user = current_user
   end

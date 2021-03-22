@@ -4,7 +4,7 @@
   <header class="jumbotron my-4">
       <h1 class="display-3">Blog page by <%= @user.name %></h1>
       <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-      <%= link_to 'start a blog！', new_blog_path(current_user), class: "btn btn-primary btn-lg", role: '' %>
+      <%= link_to 'START A BLOG！',new_blog_path(current_user), class: "btn btn-primary btn-lg"%>
     </header>
 
   <div class="container">
@@ -23,7 +23,7 @@
             <% @blogs.each do |blog| %>
             <div class='blog-card'>
               <div class="card mb-4">
-                <%= attachment_image_tag blog, :image , width: 'auto', height: 'auto',alt: "", class: "card-img-top"%>
+                <%= attachment_image_tag blog, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
                 <div class="card-body">
                   <h4 class="card-title"><p><%= blog.id %>articles</p></h4>
                   <h2 class="card-title"><%= blog.title.truncate(35) %></h2>
@@ -32,7 +32,8 @@
 
                 </div>
                 <div class="card-footer text-muted">
-                  Posted on <%= blog.created_at.strftime('%Y/%m/%d') %>  by <%= blog.user.name %>　　<%= blog.blog_comments.count %> comment 　 ♥<%= blog.blog_favorites.count %> Like
+                  <pre>Posted on <%= blog.created_at.strftime('%Y/%m/%d') %>  by <%= blog.user.name %>　　<%= blog.blog_comments.count %> comment 　 ♥<%= blog.blog_favorites.count %> Like    Category: <%= blog.category.name %></pre>
+
                   <div>
                   <% if blog.user == current_user %>
                     <%= link_to 'Edit', edit_blog_path(blog), class: "btn btn-sm btn-success edit_book" %>

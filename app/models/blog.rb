@@ -12,6 +12,8 @@ class Blog < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
-  validates :category_id, presence: true
+  # メッセージでのエラー入力
+  validates :category_id, presence: {message: 'category is required！！'}
+
 
 end
