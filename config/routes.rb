@@ -15,6 +15,9 @@ Rails.application.routes.draw do
    get '/users/:id/my_page', to: 'users#show', as: 'my_page'
    get '/users/people', to: 'users#people'
    get '/users/:id/blogs', to: 'blogs#show', as: 'user_blog'
+   get '/users/:id/reviews', to: 'reviews#show', as: 'user_review'
+   get '/users/:id/questions', to: 'questions#show', as: 'user_question'
+
 
 
 
@@ -25,14 +28,14 @@ Rails.application.routes.draw do
   get '/blogs/:id/details', to: 'blogs#details', as: 'blog_details'
 
 
-  resources :reviews do
+  resources :reviews,only: [:index, :create, :edit, :update, :destroy, :new] do
     resource :review_favorites, only: [:create, :destroy]
     resources :review_comments, only: [:create, :destroy]
   end
   get '/reviews/:id/details', to: 'reviews#details', as: 'review_details'
 
 
-  resources :questions do
+  resources :questions,only: [:index, :create, :edit, :update, :destroy, :new] do
     resource :question_favorites, only: [:create, :destroy]
     resources :question_comments, only: [:create, :destroy]
   end
@@ -41,7 +44,7 @@ Rails.application.routes.draw do
 
   root 'homes#top'
   get 'home/about' => 'homes#about'
-  
+
   # ゲストユーザー作成用
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'

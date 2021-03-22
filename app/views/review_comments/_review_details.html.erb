@@ -12,19 +12,22 @@
 <!--        </div>-->
 
         <!-- Single Comment -->
-        <div class="media mb-4">
-          <% blog.blog_comments.each do |blog_comment| %>
+        <div class='comment'>
+
+          <% review.review_comments.each do |review_comment| %>
           <div class="media-body">
-            <h5 class="mt-0"><%= blog_comment.user.name %></h5>
+            <h5 class="mt-0"><%= review_comment.user.name %> </h5>
 
 
-            <%= blog_comment.comment %>
-            <%= blog_comment.created_at.strftime('%Y/%m/%d') %>
-            <% if blog_comment.user == current_user %>
+            <%= review_comment.comment %><br>
+            Posted on <%= review_comment.created_at.strftime('%Y/%m/%d') %>
+            <% if review_comment.user == current_user %>
             <div class="comment-delete">
-            <%= link_to "Delete", blog_blog_comment_path(blog, blog_comment), method: :delete, class: "btn btn-sm btn-danger destroy_book" %>
+            <%= link_to "Delete", review_review_comment_path(review, review_comment), method: :delete, class: "btn btn-sm btn-danger destroy_book" %>
             </div>
             <% end %>
+          <br>
           </div>
+
           <% end %>
         </div>

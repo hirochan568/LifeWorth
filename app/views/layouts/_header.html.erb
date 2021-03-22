@@ -18,16 +18,19 @@
             <%= link_to 'admin messege',  class:"d-none d-lg-block nav-link mr-3" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'blog', class: 'd-none d-lg-block nav-link mr-3'%>
+            <%= link_to 'blog',blogs_path, class:"d-none d-lg-block nav-link mr-3" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'review', class: 'd-none d-lg-block nav-link mr-3'%>
+            <%= link_to 'review', reviews_path, class: 'd-none d-lg-block nav-link mr-3'%>
           </li>
           <li class="nav-item">
-            <%= link_to 'question', class: 'd-none d-lg-block nav-link mr-3'%>
+            <%= link_to 'question', questions_path, class: 'd-none d-lg-block nav-link mr-3'%>
           </li>
           <li class="nav-item">
             <%= link_to 'log out', destroy_user_session_path, method: :delete,class: 'd-none d-lg-block nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'about', home_about_path, class:"d-none d-lg-block nav-link mr-3" %>
           </li>
           <!--userの場合-->
           <% else %>
@@ -38,13 +41,16 @@
             <%= link_to 'blog',blogs_path, class:"d-none d-lg-block nav-link mr-3" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'review', class: 'd-none d-lg-block nav-link mr-3'%>
+            <%= link_to 'review', reviews_path, class: 'd-none d-lg-block nav-link mr-3'%>
           </li>
           <li class="nav-item">
-            <%= link_to 'question', class: 'd-none d-lg-block nav-link mr-3'%>
+            <%= link_to 'question', questions_path, class: 'd-none d-lg-block nav-link mr-3'%>
           </li>
           <li class="nav-item">
             <%= link_to 'log out', destroy_user_session_path, method: :delete,class: 'd-none d-lg-block nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'about', home_about_path, class:"d-none d-lg-block nav-link mr-3" %>
           </li>
           <% end %>
         <!--ログインしていない場合-->
@@ -63,6 +69,7 @@
           </li>
           <li>
             <<%= link_to 'guest log in', users_guest_sign_in_path, method: :post %>
+          </li>
         <% end %>
         </ul>
       </div>

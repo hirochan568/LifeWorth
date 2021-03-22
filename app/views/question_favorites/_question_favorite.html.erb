@@ -1,0 +1,13 @@
+ <% if question.favorited_by?(current_user) %>
+    <p>
+      <%= link_to question_question_favorites_path(question), method: :delete do %>
+        ♥<%= question.question_favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to question_question_favorites_path(question), method: :post do %>
+        ♡<%= question.question_favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>

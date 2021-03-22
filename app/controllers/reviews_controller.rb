@@ -1,59 +1,73 @@
 class ReviewsController < ApplicationController
   
   def new
-    @review = review.new
+    @review = Review.new
     @categories = Category.all
   end
 
   # 投稿データの保存
   def create
-    @review = review.new(review_params)
+    @review = Review.new(review_params)
     @review.user_id = current_user.id
-    @review.save
-    redirect_to review_details_path(@review)
+    if  @review.save
+      flash[:success] = 'Post is complete！'
+      redirect_to user_review_path(current_user)
+    else
+      @categories = Category.all
+      render :new
+    end
+
   end
 
   def index
-    @reviews = review.all
+    @reviews = Review.all
 
   end
 
   def show
+    @reviews =  Review.where(user_id: params[:id])
     @user = User.find(params[:id])
-    @reviews = @user.reviews
-
   end
 
   def details
-    @review = review.find(params[:id])
+    @review = Review.find(params[:id])
     @user = @review.user
-    @review_comment = reviewComment.new
+    @review_comment = ReviewComment.new
   end
 
 
   def edit
     @categories = Category.all
-    @review = review.find(params[:id])
+    @review = Review.find(params[:id])
   end
 
 
 
   def update
-    @review = review.find(params[:id])
+    @review = Review.find(params[:id])
     @user = @review.user
     if @review.update(review_params)
-      redirect_to review_path(@user), notice: "You have updated book successfully."
+      flash[:success] = "You have updated article successfully."
+      redirect_to  user_review_path(current_user)
     else
+      @categories = Category.all
       render "edit"
     end
   end
 
   def destroy
-    @review = review.find(params[:id])
-    @review.destroy
-    @user = @review.user
-    redirect_to review_path(@user)
+    @review = Review.find(params[:id])
+    if @review.destroy
+      flash[:success] = "You have destroyed article successfully."
+      @user = @review.user
+      redirect_to user_review_path(@user)
+    else
+      @reviews =  Review.where(user_id: params[:id])
+      @user = User.find(params[:id])
+      render "show"
+    end
   end
+
 
   private
 
@@ -62,4 +76,3 @@ class ReviewsController < ApplicationController
   end
 
 end
-

@@ -10,9 +10,9 @@ class BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
     if  @blog.save
+      flash[:success] = 'Post is complete！'
       redirect_to user_blog_path(current_user)
     else
-
       @categories = Category.all
       render :new
     end
@@ -47,18 +47,27 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @user = @blog.user
     if @blog.update(blog_params)
-      redirect_to  user_blog_path(current_user), notice: "You have updated book successfully."
+      flash[:success] = "You have updated article successfully."
+      redirect_to  user_blog_path(current_user)
     else
+      @categories = Category.all
       render "edit"
     end
   end
 
   def destroy
     @blog = Blog.find(params[:id])
-    @blog.destroy
-    @user = @blog.user
-    redirect_to user_blog_path(@user)
+    if @blog.destroy
+      flash[:success] = "You have destroyed article successfully."
+      @user = @blog.user
+      redirect_to user_blog_path(@user)
+    else
+      @blogs =  Blog.where(user_id: params[:id])
+      @user = User.find(params[:id])
+      render "show"
+    end
   end
+
 
   private
 

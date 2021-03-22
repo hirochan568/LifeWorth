@@ -3,10 +3,10 @@
     <div class="col-sm-12 col-md-8 col-lg-8 px-5 px-sm-0">
 
       <div class=" mt-4 mb-5">
-        <h4 class="px-3 font-weight-bold d-inline-block", style="background-color: #eaf4fc">BLOG EDIT</h4><br>
+        <h4 class="px-3 font-weight-bold d-inline-block", style="background-color: #eaf4fc">Question EDIT</h4><br>
       </div>
-
-      <%= form_with model: @blog, url: blog_path, local:true do |f| %>
+      <%= render 'layouts/error_messages', model: @question %>
+      <%= form_with model: @question, url: question_path, local:true do |f| %>
 
       <div class="mb-3">
           <div class="title">

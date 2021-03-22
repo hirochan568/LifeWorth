@@ -1,32 +1,40 @@
 <div class="container">
+<!-- Jumbotron Header -->
+  <header class="jumbotron my-4">
+    <h1 class="display-3">A Review Welcome!</h1>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+    <%= link_to 'LETS YOUR Review!!', user_review_path(current_user), class: "btn btn-primary btn-lg", role: '' %>
+  </header>
 
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-      <h1 class="display-3">A BLOG Welcome!</h1>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-      <a href="#" class="btn btn-primary btn-lg">LET'S YOUR BLOG!!</a>
-    </header>
+  <!-- Page Features -->
+  <div class="row text-center">
+    <% @reviews.each do |review| %>
+    <div class="col-lg-3 col-md-6 mb-4">
+      <div class="card-body">
+        <div class="cardwide h-100">
 
-    <!-- Page Features -->
-    <div class="row text-center">
-      <% @blogs.each do |blog| %>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" <%= attachment_image_tag blog, :image %> alt="">
-          <div class="card-body">
-            <h4 class="card-title"><%= blog.title %></h4>
-            <p class="card-text"><%= blog.body %></p>
+        <%= attachment_image_tag review, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
+
+          <div class='indexcard-body'>
+            <h4 class="card-title"><%= review.title.truncate(10) %></h5>
+            <h6 class="card-text"><%= review.body.truncate(20) %></h6>
+
           </div>
-          <div class="card-footer">
-            <%= link_to 'Find Out More!', blog_details_path(blog), class: "btn btn-primary", role: "" %>
+          <div class="indexcard-footer">
+            ♥<%= review.review_favorites.count %> Like<br>
+            <%= review.review_comments.count %> comment<br>
+             Category: <%= review.category.name %><br>
+           Posted by <%= link_to review.user.name, user_review_path(review.user_id) %><br>
+           <%= review.created_at.strftime('%Y/%m/%d') %><br>
+            <%= link_to 'Find Out More!', review_details_path(review), class: "btn btn-primary", position: 'bottom' %>
           </div>
         </div>
+
       </div>
-      <% end %>
-
-
 
     </div>
+    <% end %>
+  </div>
     <!-- /.row -->
 
   </div>

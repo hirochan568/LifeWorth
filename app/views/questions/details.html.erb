@@ -7,33 +7,34 @@
 
         <!-- Title -->
         <div class="detail-title">
-        <h1 class="mt-4"><%= @blog.title %></h1>
+        <h1 class="mt-4"><%= @question.title %></h1>
         </div>
         <!-- Author -->
         <p class="lead">
           by
-          <%= link_to @blog.user.name, blog_path(@user) %>
+          <%= link_to @question.user.name, user_question_path(@user) %>
         </p>
-        <p><%= @blog.blog_comments.count %> comment</p>
+        <p><%= @question.question_comments.count %> comment</p><%= render 'question_favorites/question_favorite', question: @question %>
+
         <hr>
 
         <!-- Date/Time -->
-        Posted on <%= @blog.created_at.strftime('%Y/%m/%d') %>  by <%= @blog.user.name %>
+        Posted on <%= @question.created_at.strftime('%Y/%m/%d') %>  by <%= @question.user.name %>
         <!--edit/delete-->
-        <% if @blog.user == current_user %>
-          <%= link_to 'Edit', edit_blog_path(@blog), class: "btn btn-sm btn-success edit_book" %>
-          <%= link_to "Delete", blog_path(@blog), method: :delete, class: "btn btn-sm btn-danger destroy_book" %>
+        <% if @question.user == current_user %>
+          <%= link_to 'Edit', edit_question_path(@question), class: "btn btn-sm btn-success edit_book" %>
+          <%= link_to "Delete", question_path(@question), method: :delete, class: "btn btn-sm btn-danger destroy_book" %>
         <% end %>
         <hr>
 
         <!-- Preview Image -->
-        <%= attachment_image_tag @blog, :image , ize: 'auto', alt: "" , class: "img-fluid rounded" %>
+        <%= attachment_image_tag @question, :image , ize: 'auto', alt: "" , class: "img-fluid rounded" %>
 
         <hr>
 
         <!-- Post Content -->
         <div class="detail-content">
-        <p class="lead"><%= @blog.body %></p>
+        <p class="lead"><%= @question.body %></p>
         </div>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
 
@@ -53,7 +54,7 @@
         <hr>
 
         <!-- Comments Form -->
-        <%= form_with(model:[@blog, @blog_comment], local: true) do |f| %>
+        <%= form_with(model:[@question, @question_comment], local: true) do |f| %>
         <div class="card my-4">
           <h5 class="card-header">Post a Comment:</h5>
           <div class="card-body">
@@ -68,7 +69,7 @@
         <% end %>
 
         <!-- someone Comment -->
-         <%= render 'blog_comments/blog_details', blog: @blog %>
+         <%= render 'question_comments/question_details', question: @question %>
 
 
         <!-- Comment with nested comments -->

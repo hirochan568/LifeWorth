@@ -13,24 +13,25 @@
       <div class="card-body">
         <div class="cardwide h-100">
 
-        <%= attachment_image_tag blog, :image , width: 'auto', height: 'auto',alt: "", class: "card-img-top"%>
+        <%= attachment_image_tag blog, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
 
           <div class='indexcard-body'>
             <h4 class="card-title"><%= blog.title.truncate(10) %></h5>
             <h6 class="card-text"><%= blog.body.truncate(20) %></h6>
 
           </div>
-          <div class="card-footer">
+          <div class="indexcard-footer">
             ♥<%= blog.blog_favorites.count %> Like<br>
             <%= blog.blog_comments.count %> comment<br>
              Category: <%= blog.category.name %><br>
-           Posted by <%= blog.user.name %><br>
+           Posted by <%= link_to blog.user.name, user_blog_path(blog.user_id) %><br>
            <%= blog.created_at.strftime('%Y/%m/%d') %><br>
             <%= link_to 'Find Out More!', blog_details_path(blog), class: "btn btn-primary", position: 'bottom' %>
           </div>
         </div>
 
       </div>
+
     </div>
     <% end %>
   </div>
