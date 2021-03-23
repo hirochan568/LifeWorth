@@ -36,6 +36,19 @@
           <%= f.text_area :body, class:'form-control', placeholder: "Please enter a content", rows: "3" %>
         </div>
 
+         <div class='row md-3'>
+          <div class="col-md-1">
+          STATUS
+          </div>
+
+          <div class="col-md-4">
+            <%= f.radio_button :solution, true %>
+            <%= f.label :solution, '解決済み', value: true %>
+            <%= f.radio_button :solution, false %>
+            <%= f.label :solution, '未解決', value: false %>
+          </div>
+        </div>
+
           <div class="mb-3">
             <%= f.submit :"Update", class:"btn btn-success btn-lg" %>
           </div>

@@ -25,6 +25,11 @@
                 <%= attachment_image_tag question, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
                 <div class="card-body">
                   <h4 class="card-title"> <%= idx %>article</h4>
+                  <% if question.solution == true %>
+                    <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">Status: solved</div>
+                  <% else %>
+                    <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">Status: Unresolved</div>
+                  <% end %>
                   <h2 class="card-title"><%= question.title.truncate(35) %></h2>
                   <p class="card-text"><%= question.body.truncate(200) %></p>
                   <%= link_to 'Read More →', question_details_path(question), class: "btn btn-primary", role: "" %>

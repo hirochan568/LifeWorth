@@ -15,6 +15,11 @@
           <%= link_to @question.user.name, user_question_path(@user) %>
         </p>
         <p><%= @question.question_comments.count %> comment</p><%= render 'question_favorites/question_favorite', question: @question %>
+        <% if @question.solution == true %>
+          <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">Status: solved</div>
+        <% else %>
+          <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">Status: Unresolved</div>
+        <% end %>
 
         <hr>
 

@@ -17,10 +17,15 @@
 
           <div class='indexcard-body'>
             <h4 class="card-title"><%= question.title.truncate(10) %></h5>
-            <h6 class="card-text"><%= question.body.truncate(20) %></h6>
+            <h6 class="card-text"><%= question.body.truncate(12) %></h6>
 
           </div>
           <div class="indexcard-footer">
+            <% if question.solution == true %>
+          <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">Status: solved</div>
+        <% else %>
+          <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">Status: Unresolved</div>
+        <% end %>
             ♥<%= question.question_favorites.count %> Like<br>
             <%= question.question_comments.count %> comment<br>
              Category: <%= question.category.name %><br>
