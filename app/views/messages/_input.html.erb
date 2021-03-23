@@ -1,0 +1,17 @@
+ 
+ <div class='comment'>
+    <% messages.each do |message| %>
+    <div class="media-body">
+      <h5 class="mt-0"><%= message.user.name %> </h5>
+      <%= message.title %><br>
+      <%= message.body %><br>
+      Posted on <%= message.created_at.strftime('%Y/%m/%d') %>
+      <% if message.user == current_user %>
+        <div class="comment-delete">
+          <%= link_to "Delete", message_path(message), method: :delete, class: "btn btn-sm btn-danger destroy_book" %>
+        </div>
+      <% end %>
+           <br>
+    </div>
+    <% end %>
+  </div>

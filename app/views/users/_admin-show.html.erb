@@ -1,4 +1,79 @@
 
-<p>管理者専用ページです</p>
+<div class= userback>
+<main role="main">
 
-<%= @user.name %>さん宛のメッセージ
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <h2><div class="display-3">Welcome to Administrator! </h2>
+      <h3>Dear Admin <%= @user.name %></h3>
+      <h6>Have you ever wanted to save a little bit of wisdom every day?
+         It is an app that allows you to share your wisdom with others who want to borrow the wisdom of others.
+         Let's get started!
+         It is a site where you can help someone and learn through SNS.
+      </h6>
+
+      <h2>Your Profile</h2>
+      <h5>
+  <table class='table'>
+    <thead>
+          <tr>
+           <th>会員ID</th>
+           <th>氏名</th>
+           <th>ニックネーム</th>
+           <th>電話番号</th>
+           <th>email</th>
+           <th colspan="5"></th>
+          </tr>
+        </thead>
+      <tbody>
+        <tr>
+          <td><%= @user.id %></td>
+          <td><%= @user.name %></td>
+          <td><%= @user.nickname %></td>
+          <td><%= @user.telephone %></td>
+          <td><%= @user.email %></td>
+          </tr>
+      </tbody>
+  </table>
+      <% if @user == current_user %>
+      <p><%= link_to 'EDIT', edit_user_path(@user), class: "btn btn-primary btn-lg" %></p>
+      <% end %>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-3">
+        <h2>Messages</h2>
+        <p>Shows requests from users who have registered so far.Basically, please do not comment. If you want to comment, please write your name in the comment and reply.</p>
+        <%= link_to 'Messages',users_message_path, class: "btn btn-secondary", role: "button" %>
+      </div>
+      <div class="col-md-3">
+        <h2>MyBlog</h2>
+        <p>It can be used as an administrator's blog.As an administrator, let's use it as a notification or bulletin board for users!In that case, please state that you are an administrator.</p>
+        <%= link_to 'MyBlog',user_blog_path(@user), class: "btn btn-secondary", role: "button" %>
+        <%= link_to 'NEW',new_blog_path(current_user), class: "btn btn-secondary", role: "button" %>
+      </div>
+      <div class="col-md-3">
+        <h2>MyReview</h2>
+        <p>By the way, I added a function so that the administrator can also enjoy it! Tell users about products and knowledge that have helped you in your life. </p>
+        <%= link_to 'MyReview',user_review_path(@user), class: "btn btn-secondary", role: "button" %>
+        <%= link_to 'NEW',new_review_path(current_user), class: "btn btn-secondary", role: "button" %>
+      </div>
+      <div class="col-md-3">
+        <h2>MyQuestion</h2>
+        <p>By the way, I added a function so that the administrator can also enjoy it! Ask the user what they don't understand. Maybe a senior manager will tell you?</p>
+        <%= link_to 'MyQuestion',user_question_path(@user), class: "btn btn-secondary", role: "button" %>
+        <%= link_to 'NEW',new_question_path(current_user), class: "btn btn-secondary", role: "button" %>
+      </div>
+    </div>
+
+    <hr>
+
+  </div> <!-- /container -->
+
+</main>

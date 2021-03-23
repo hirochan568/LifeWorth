@@ -1,0 +1,28 @@
+<div class="container">
+<!-- Jumbotron Header -->
+  <header class="jumbotron my-4">
+    <h1 class="display-3">Welcome　Contact　US!</h1>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+  </header>
+
+  <!-- Comments Form -->
+        <%= form_with model: @message, local: true do |f| %>
+        <div class="card my-4">
+          <h5 class="card-header">Post a Message:</h5>
+          <div class="contactcard-body">
+            <form>
+              <div class="form-group">
+                <%= f.text_field :title, rows:'1', class: "form-control", placeholder: "Please write your purpose here" %>
+              </div>
+              <div class="form-group">
+                <%= f.text_area :body, rows:'3', class: "form-control", placeholder: "Please write your details here" %>
+              </div>
+              <%= f.submit "Post", class: "btn btn-primary"  %>
+            </form>
+          </div>
+        </div>
+        <% end %>
+
+  <!-- Page Features -->
+ <%= render 'messages/input', messages: @messages %>
+</div>

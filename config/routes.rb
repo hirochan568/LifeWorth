@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :users,only: [:index, :edit, :update]
    get '/users/:id/my_page', to: 'users#show', as: 'my_page'
    get '/users/people', to: 'users#people'
+   get '/users/message', to: 'users#message'
    get '/users/:id/blogs', to: 'blogs#show', as: 'user_blog'
    get '/users/:id/reviews', to: 'reviews#show', as: 'user_review'
    get '/users/:id/questions', to: 'questions#show', as: 'user_question'
@@ -40,6 +41,8 @@ Rails.application.routes.draw do
     resources :question_comments, only: [:create, :destroy]
   end
   get '/questions/:id/details', to: 'questions#details', as: 'question_details'
+
+  resources :messages, only: [:new, :create, :index, :destroy]
 
 
   root 'homes#top'

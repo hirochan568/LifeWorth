@@ -12,10 +12,10 @@
           <!--管理者の場合-->
           <% if current_user.is_admin? %>
           <li class="nav-item">
-            <%= link_to 'users',users_people_path,class: 'd-none d-lg-block nav-link mr-3' %>
+            <%= link_to 'my_page', my_page_path(current_user),class: 'd-none d-lg-block nav-link mr-3' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'admin messege',  class:"d-none d-lg-block nav-link mr-3" %>
+            <%= link_to 'users',users_people_path,class: 'd-none d-lg-block nav-link mr-3' %>
           </li>
           <li class="nav-item">
             <%= link_to 'blog',blogs_path, class:"d-none d-lg-block nav-link mr-3" %>
@@ -28,6 +28,9 @@
           </li>
           <li class="nav-item">
             <%= link_to 'log out', destroy_user_session_path, method: :delete,class: 'd-none d-lg-block nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'customer messege', users_message_path, class:"d-none d-lg-block nav-link mr-3" %>
           </li>
           <li class="nav-item">
             <%= link_to 'about', home_about_path, class:"d-none d-lg-block nav-link mr-3" %>
@@ -48,6 +51,9 @@
           </li>
           <li class="nav-item">
             <%= link_to 'log out', destroy_user_session_path, method: :delete,class: 'd-none d-lg-block nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Contact US', messages_path, class:"d-none d-lg-block nav-link mr-3" %>
           </li>
           <li class="nav-item">
             <%= link_to 'about', home_about_path, class:"d-none d-lg-block nav-link mr-3" %>
