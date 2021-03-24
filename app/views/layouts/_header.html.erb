@@ -1,14 +1,19 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
+
       <a class="navbar-brand" href="/"><span>LifeWorth</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+
+        <ul class="navbar-nav">
         <!--ログインしているか-->
         <% if user_signed_in? %>
+        <form class="form-inline my-2 my-lg-0">
+        <%= render 'layouts/search' %>
+        </form>
+          <div class='navbar-nav mr-auto'>
           <!--管理者の場合-->
           <% if current_user.is_admin? %>
           <li class="nav-item">
@@ -77,6 +82,7 @@
             <<%= link_to 'guest log in', users_guest_sign_in_path, method: :post %>
           </li>
         <% end %>
+        </div>
         </ul>
       </div>
       <!----↓検索用のコード>
@@ -92,6 +98,6 @@
       <!--    </div>-->
       <!--  </div>-->
       <!--<%# end %>-->
-    </div>
+
   </nav>
 </header>

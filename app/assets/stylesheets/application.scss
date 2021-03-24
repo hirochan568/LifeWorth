@@ -31,6 +31,15 @@ header{
     /* ↑ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定 */
 }
 
+.toptab{
+    padding-right: 0;
+
+}
+
+.form-inline{
+     padding-left: 0;
+}
+
 .body {
     width: 100%;
     height: 100%;

@@ -10,6 +10,18 @@ class Question < ApplicationRecord
     question_favorites.where(user_id: user.id).exists?
   end
 
+  # 検索字の要件
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Question.where(title: content)
+    elsif method == 'forward'
+      Question.where('title LIKE ?', content+'%')
+    elsif method == 'backward'
+      Question.where('title LIKE ?', '%'+content)
+    else
+      Question.where('title LIKE ?', '%'+content+'%')
+    end
+  end
 
   validates :title, presence: true
   validates :body, presence: true
