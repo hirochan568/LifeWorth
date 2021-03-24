@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search'
   # ↓デバイスにより生成
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
     resources :blog_comments, only: [:create, :destroy]
   end
   get '/blogs/:id/details', to: 'blogs#details', as: 'blog_details'
+  get '/blogs/favorite', to: 'blogs#favorite', as: 'blogs_favorite'
 
 
   resources :reviews,only: [:index, :create, :edit, :update, :destroy, :new] do
@@ -34,19 +36,22 @@ Rails.application.routes.draw do
     resources :review_comments, only: [:create, :destroy]
   end
   get '/reviews/:id/details', to: 'reviews#details', as: 'review_details'
-
+  get '/reviews/favorite', to: 'reviews#favorite', as: 'reviews_favorite'
 
   resources :questions,only: [:index, :create, :edit, :update, :destroy, :new] do
     resource :question_favorites, only: [:create, :destroy]
     resources :question_comments, only: [:create, :destroy]
   end
   get '/questions/:id/details', to: 'questions#details', as: 'question_details'
-
+  get '/questions/favorite', to: 'questions#favorite', as: 'questions_favorite'
   resources :messages, only: [:new, :create, :index, :destroy]
 
 
   root 'homes#top'
   get 'home/about' => 'homes#about'
+  
+  # 検索へのpath
+  get '/search', to: 'search#search'
 
   # ゲストユーザー作成用
   devise_scope :user do

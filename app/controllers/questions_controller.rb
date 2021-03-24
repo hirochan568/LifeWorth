@@ -68,6 +68,10 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def favorite
+    question_ids = QuestionFavorite.where(user_id: current_user.id).select("question_id as id")
+    @questions =  Question.where(id: question_ids)
+  end
 
   private
 

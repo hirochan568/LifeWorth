@@ -51,6 +51,7 @@
         <p>Let's leave the knowledge found in your life! You can deepen your understanding and share with other people's opinions.</p>
         <%= link_to 'MyBlog',user_blog_path(@user), class: "btn btn-secondary", role: "button" %>
         <%= link_to 'NEW',new_blog_path(current_user), class: "btn btn-secondary", role: "button" %>
+        <%= link_to 'FAVORITE',blogs_favorite_path, class: "btn btn-secondary", role: "button" %>
 
       </div>
       <div class="col-md-4">
@@ -58,12 +59,14 @@
         <p>Are there any items that were useful in your life? Let's evaluate and share even if it is not a cooking recipe.</p>
         <%= link_to 'MyReview',user_review_path(@user), class: "btn btn-secondary", role: "button" %>
         <%= link_to 'NEW',new_review_path(current_user), class: "btn btn-secondary", role: "button" %>
+        <%= link_to 'FAVORITE',reviews_favorite_path, class: "btn btn-secondary", role: "button" %>
       </div>
       <div class="col-md-4">
         <h2>MyQuestion</h2>
         <p>Have you ever been in trouble with your studies or worries? Let's borrow the wisdom of other users!</p>
         <%= link_to 'MyQuestion',user_question_path(@user), class: "btn btn-secondary", role: "button" %>
         <%= link_to 'NEW',new_question_path(current_user), class: "btn btn-secondary", role: "button" %>
+        <%= link_to 'FAVORITE',questions_favorite_path, class: "btn btn-secondary", role: "button" %>
       </div>
     </div>
 
