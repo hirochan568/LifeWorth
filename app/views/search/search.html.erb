@@ -1,0 +1,13 @@
+
+<% if @model == 'blog' %>
+	<h3>Blogs search for "<%= @content %>"</h3>
+  <%= render 'blogs/index', blogs: @records %>
+
+<% elsif @model == 'review' %>
+	<h3>Reviews search for "<%= @content %>"</h3>
+  <%= render 'reviews/index', reviews: @records %>
+
+<% elsif @model == 'book' %>
+	<h3>Questions search for "<%= @content %>"</h3>
+  <%= render 'questions/index', questions: @records %>
+<% end %>

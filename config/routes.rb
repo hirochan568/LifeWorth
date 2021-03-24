@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search/search'
   # ↓デバイスにより生成
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
@@ -47,6 +48,9 @@ Rails.application.routes.draw do
 
   root 'homes#top'
   get 'home/about' => 'homes#about'
+  
+  # 検索へのpath
+  get '/search', to: 'search#search'
 
   # ゲストユーザー作成用
   devise_scope :user do

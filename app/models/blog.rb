@@ -10,6 +10,19 @@ class Blog < ApplicationRecord
     blog_favorites.where(user_id: user.id).exists?
   end
 
+  # 検索字の要件
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Blog.where(title: content)
+    elsif method == 'forward'
+      Blog.where('title LIKE ?', content+'%')
+    elsif method == 'backward'
+      Blog.where('title LIKE ?', '%'+content)
+    else
+      Blog.where('title LIKE ?', '%'+content+'%')
+    end
+  end
+
   validates :title, presence: true
   validates :body, presence: true
   # メッセージでのエラー入力
