@@ -16,12 +16,10 @@ class BlogsController < ApplicationController
       @categories = Category.all
       render :new
     end
-
   end
 
   def index
     @blogs = Blog.all
-
   end
 
   def show
@@ -66,6 +64,12 @@ class BlogsController < ApplicationController
       @user = User.find(params[:id])
       render "show"
     end
+  end
+
+  def favorite
+
+    @user = current_user
+    @blogs = blog_favorited
   end
 
 

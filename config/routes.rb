@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :blog_comments, only: [:create, :destroy]
   end
   get '/blogs/:id/details', to: 'blogs#details', as: 'blog_details'
+  get '/blogs/favorite', to: 'blogs#favorite', as: 'blog_favorite'
 
 
   resources :reviews,only: [:index, :create, :edit, :update, :destroy, :new] do
