@@ -7,7 +7,7 @@
 	<h3>Reviews search for "<%= @content %>"</h3>
   <%= render 'reviews/index', reviews: @records %>
 
-<% elsif @model == 'book' %>
+<% elsif @model == 'question' %>
 	<h3>Questions search for "<%= @content %>"</h3>
   <%= render 'questions/index', questions: @records %>
 <% end %>

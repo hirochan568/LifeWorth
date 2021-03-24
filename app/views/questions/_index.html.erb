@@ -1,27 +1,32 @@
 <table class='table table-hover table-inverse'>
   <thead>
     <tr>
-      <th></th>
       <th>User</th>
+      <th>Status</th>
       <th>Title</th>
       <th>Opinion</th>
       <th>Category</th>
       <th>Favorite</th>
       <th>Comment</th>
       <th>Created date</th>
-      <th colspan="9"></th>
+      <th colspan="8"></th>
     </tr>
   </thead>
   <tbody>
     <% questions.each do |question| %>
       <tr>
-        <td>
-        </td>
         <td><%= link_to question.user.name, user_question_path(question.user_id) %></td>
+        <td><% if question.solution == true %>
+            <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">solved</div>
+            <% else %>
+            <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">Unresolved</div>
+            <% end %>
+        </td>
         <td><%= link_to question_details_path(question) do %>
           <%= question.title.truncate(10) %>
           <% end %>
         </td>
+
         <td><%= question.body.truncate(12) %></td>
         <td><%= question.category.name %></td>
         <td><%= render 'question_favorites/question_favorite', question: question %></td>
