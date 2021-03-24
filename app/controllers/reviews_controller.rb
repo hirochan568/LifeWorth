@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  
+
   def new
     @review = Review.new
     @categories = Category.all
@@ -68,6 +68,10 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def favorite
+    review_ids = ReviewFavorite.where(user_id: current_user.id).select("review_id as id")
+    @reviews =  Review.where(id: review_ids)
+  end
 
   private
 

@@ -16,10 +16,12 @@ class BlogsController < ApplicationController
       @categories = Category.all
       render :new
     end
+
   end
 
   def index
     @blogs = Blog.all
+
   end
 
   def show
@@ -67,11 +69,13 @@ class BlogsController < ApplicationController
   end
 
   def favorite
-
-    @user = current_user
-    @blogs = blog_favorited
+    #blog_favoriteからuser_idを条件にデータを取得する
+    blog_ids = BlogFavorite.where(user_id: current_user.id).select("blog_id as id")
+    #blogからblog_idを条件にデータを取得する
+    @blogs =  Blog.where(id: blog_ids)
+    #1行にすると@blogs =  Blog.where(id: BlogFavorite.where(user_id: current_user.id).select("blog_id as id"))
+    #別の書き方 @blogs =  Blog.where(id: current_user.blog_favorites.map{|bf| bf.blog_id})
   end
-
 
   private
 

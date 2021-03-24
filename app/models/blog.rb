@@ -5,7 +5,7 @@ class Blog < ApplicationRecord
   has_many :blog_comments, dependent: :destroy
   attachment :image
   has_many :blog_favorites, dependent: :destroy
-  has_many :blog_favorited_users, through: :book_favorites, source: :user
+  # has_many :blog_favorited_users, through: :blog_favorites, source: :user
 
   def favorited_by?(user)
     blog_favorites.where(user_id: user.id).exists?
