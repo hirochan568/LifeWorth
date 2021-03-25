@@ -11,6 +11,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
       redirect_to root_path, alert: 'Guest users cannot be changed or deleted.'
     end
   end
+  
+  # フラッシュメッセージの追加。deviseのデフォルトは/LifeWorth/config/locales/devise.en.ymlより削除
+
+  def after_sign_up_path_for(resource)
+    flash[:success] = "Membership registration has been completed successfully."
+    if current_user.is_admin?
+      users_path(resource.id)
+    else
+      my_page_path(resource.id)
+    end
+  end
 
 
   # before_action :configure_sign_up_params, only: [:create]

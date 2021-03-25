@@ -14,13 +14,13 @@ class Blog < ApplicationRecord
   # 検索字の要件
   def self.search_for(content, method)
     if method == 'perfect'
-      Blog.where(title: content)
+      Blog.where(title: content, body: content)
     elsif method == 'forward'
-      Blog.where('title LIKE ?', content+'%')
+      Blog.where('title LIKE ? or body LIKE ?', content+'%',content+'%')
     elsif method == 'backward'
-      Blog.where('title LIKE ?', '%'+content)
+      Blog.where('title LIKE ? or body LIKE ?', '%'+content, '%'+content)
     else
-      Blog.where('title LIKE ?', '%'+content+'%')
+      Blog.where('title LIKE ? or body LIKE ?', '%'+content+'%', '%'+content+'%')
     end
   end
 

@@ -13,13 +13,13 @@ class Question < ApplicationRecord
   # 検索字の要件
   def self.search_for(content, method)
     if method == 'perfect'
-      Question.where(title: content)
+      Question.where(title: content, body: content)
     elsif method == 'forward'
-      Question.where('title LIKE ?', content+'%')
+      Question.where('title LIKE ? or body LIKE ?', content+'%',content+'%')
     elsif method == 'backward'
-      Question.where('title LIKE ?', '%'+content)
+      Question.where('title LIKE ? or body LIKE ?', '%'+content, '%'+content)
     else
-      Question.where('title LIKE ?', '%'+content+'%')
+      Question.where('title LIKE ? or body LIKE ?', '%'+content+'%', '%'+content+'%')
     end
   end
 

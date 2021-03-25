@@ -1,54 +1,39 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-10 px-5 px-sm-0">
-    <%= form_with model: @user, url: user_path, local:true do |f| %>
 
-      <div class="d-inline-block m-5">
-        <h4 class="px-3 font-weight-bold", style="background-color: #eaf4fc">Member registration information</h4>
-      </div>
-
-      <div class="d-flex flex-row mt-1">
-        <div class="title">
-          <p>nickname</p>
+      <%= form_with model: @user, url: user_path, local:true do |f| %>
+        <%= render "users/shared/error_messages", resource: current_user %>
+       <div class="d-inline-block m-5">
+          <h4 class="px-3 font-weight-bold", style="background-color: #eaf4fc">Sign Up</h4>
+        </div>
+      <!--氏名入力フォーム-->
+      <form class="row g-3">
+        <div class="col-md-6">
+          <label for="inputName" class="form-label">Name</label>
+          <%= f.text_field :name, autofocus: true, autocomplete:"name", placeholder:"Taro Nihon", class:'form form-control' %>
+        </div>
+        <div class="col-md-6">
+          <label for="inputNickname" class="form-label">Nickname</label>
+          <%= f.text_field :nickname, autofocus: true, autocomplete:"nickname", placeholder:"example: taro", class:'form form-control' %>
         </div>
 
-        <div class="d-flex">
-          <%= f.text_field :nickname, autofocus: true, autocomplete:"nickname", placeholder:"nanashi", class:'form2 form-control' %>
-        </div>
-      </div>
-
-      <div class="d-flex flex-row mt-1">
-        <div class="title">
-          <p>電話番号</p>
-        </div>
-
-        <div class="d-flex ">
+        <div class="col-12">
+          <label for="inputTelephone" class="form-label">Telephone</label>
           <%= f.text_field :telephone, autofocus: true, autocomplete:"telephone", placeholder:"0000000000", class:'form form-control' %>
         </div>
-      </div>
 
-      <div class="d-flex flex-row mt-1">
-        <div class="title">
-          <p>メールアドレス</p>
-        </div>
-
-        <div class="d-flex ">
+        <div class="col-12">
+          <label for="inputEmail" class="form-label">Email</label>
           <%= f.text_field :email, autofocus: true, autocomplete:"email", placeholder:"sample@example.com", class:'form form-control' %>
         </div>
-      </div>
 
-      <div class="d-flex flex-row mt-4">
-        <div class="title">
-          <p></p>
+        <div class="col-2">
+           <%= f.submit "Edit" ,class: '"btn btn-success btn-block btn-size"' %>
         </div>
+      </form>
 
-        <div class="d-flex">
-          <button type="submit" class="btn btn-success btn-block btn-size mr-5">submit</button>
-        </div>
-
-      </div>
-
-    <% end %>
+      <% end %>
 
     </div>
   </div>

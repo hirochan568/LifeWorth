@@ -13,13 +13,13 @@ class Review < ApplicationRecord
   # 検索字の要件
   def self.search_for(content, method)
     if method == 'perfect'
-      Review.where(title: content)
+      Review.where(title: content, body: content)
     elsif method == 'forward'
-      Review.where('title LIKE ?', content+'%')
+      Review.where('title LIKE ? or body LIKE ?', content+'%',content+'%')
     elsif method == 'backward'
-      Review.where('title LIKE ?', '%'+content)
+      Review.where('title LIKE ? or body LIKE ?', '%'+content, '%'+content)
     else
-      Review.where('title LIKE ?', '%'+content+'%')
+      Review.where('title LIKE ? or body LIKE ?', '%'+content+'%', '%'+content+'%')
     end
   end
 

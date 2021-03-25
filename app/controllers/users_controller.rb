@@ -31,8 +31,12 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update(user_params)
-    redirect_to  my_page_path, success: '登録に成功しました'
+    if @user.update(user_params)
+    redirect_to  my_page_path, success: 'The update has been completed successfully.'
+    else
+     @user = current_user
+      render "edit"
+    end
   end
 
   def people

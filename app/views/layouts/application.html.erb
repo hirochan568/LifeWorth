@@ -11,17 +11,19 @@
 
   <body>
     <div class="wrapper">
-      <div>
+
         <%= render "layouts/header" %>
+      <div class='headline'>
+        <%= render 'layouts/flash_message'%>
+        <% if user_signed_in? %>
+        <%= render 'layouts/search' %>
+        <% end %>
       </div>
 
 
- <%= render 'layouts/search' %>
 
 
-      <%= render 'layouts/flash_message'%>
-
-      <%= yield %></p>
+      <%= yield %>
     </div>
   </body>
   <%= render 'layouts/footer' %>

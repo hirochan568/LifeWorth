@@ -26,4 +26,8 @@ class User < ApplicationRecord
   has_many :question_favorites, dependent: :destroy
   has_many :messages, dependent: :destroy
 
+  validates :name, presence: true
+  validates :email, presence: true
+  
+
 end

@@ -23,12 +23,30 @@ header{
     font-size: 30px;
 }
 
-.wrapper{
-    min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
+.navbar-nav {
+    padding-left: 4rem;
+}
 
-    padding-bottom: 5px; /* ←フッターの高さを指定 */
+.nav-item{
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.wrapper{
     box-sizing: border-box;
     /* ↑ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定 */
+}
+.headline{
+    font-family: 'Caveat', cursive;
+    font-size: 1.5rem;
+}
+
+.dropdown-menu {
+    font-size: 2rem;
+}
+
+.form-control{
+    font-size: 1rem;
 }
 
 .toptab{
@@ -45,6 +63,7 @@ header{
     height: 100%;
     padding: 0;
     position: absolute;
+    font-size: 1rem;
 }
 
 
@@ -109,4 +128,13 @@ header{
 .alert{
     font-family: 'Roboto Slab', serif;
     text-align: center;
+    margin-bottom: 0;
+&__alert{
+    background-color: red;
+  }
+}
+
+// idを指定する場合の記載方法
+#error_explanation{
+    background-color: red;
 }

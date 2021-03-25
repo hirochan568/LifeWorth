@@ -7,8 +7,20 @@ class Users::SessionsController < Devise::SessionsController
   def new_guest
     user = User.guest
     sign_in user
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to my_page_path(current_user), success: 'You have Signed in as a guest user.'
   end
+
+  # フラッシュメッセージの追加。deviseのデフォルトは/LifeWorth/config/locales/devise.en.ymlより削除
+
+  def after_sign_in_path_for(resource)
+    flash[:success] = "Signed in completed successfully."
+     if current_user.is_admin?
+     users_path(resource.id)
+     else
+     my_page_path(resource.id)
+     end
+  end
+
 
   # before_action :configure_sign_in_params, only: [:create]
 

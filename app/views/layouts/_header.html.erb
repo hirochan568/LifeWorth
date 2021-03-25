@@ -2,107 +2,93 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
       <a class="navbar-brand" href="/"><span>LifeWorth</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-        <ul class="navbar-nav">
-        <!--ログインしているか-->
+      <div class="navbar-collapse collapse show" id="navbarsExampleDefault" style="">
+    <ul class="navbar-nav mr-auto">
+     <!--ログインしているか-->
         <% if user_signed_in? %>
-        <form class="form-inline my-2 my-lg-0">
-          <%= form_with url: search_path, method: :get, local: true do |f| %>
-          <%= f.text_field :content, class: "form-control mr-sm-2",  placeholder: "Search" %>
-          <%= f.select :model, options_for_select({ "Blog" => "blog", "Review" => "review", "Question" => "question" }), class: "form-control mr-sm-2", type: "text" %>
-          <%= f.select :method, options_for_select({ "perfect" => "perfect", "forward" => "forward", "backward" => "backward", "partial" => "partial" }), class: "form-control mr-sm-2", type: "text" %>
-          <%= f.submit '検索', class: "btn btn-outline-success my-2 my-sm-0", type: "submit", placeholder: "Search"  %>
-          <% end %>
-        </form>
-          <div class='navbar-nav mr-auto'>
+          <div class='navbar-nav mr-auto' >
           <!--管理者の場合-->
           <% if current_user.is_admin? %>
           <li class="nav-item">
-            <%= link_to 'my_page', my_page_path(current_user),class: 'd-none d-lg-block nav-link mr-3' %>
+            <%= link_to 'My page', my_page_path(current_user),class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'users',users_people_path,class: 'd-none d-lg-block nav-link mr-3' %>
+            <%= link_to 'Users',users_people_path,class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'blog',blogs_path, class:"d-none d-lg-block nav-link mr-3" %>
+            <%= link_to 'Blog',blogs_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'review', reviews_path, class: 'd-none d-lg-block nav-link mr-3'%>
+            <%= link_to 'Review', reviews_path, class: 'nav-link'%>
           </li>
           <li class="nav-item">
-            <%= link_to 'question', questions_path, class: 'd-none d-lg-block nav-link mr-3'%>
+            <%= link_to 'Question', questions_path, class: 'nav-link'%>
           </li>
           <li class="nav-item">
-            <%= link_to 'log out', destroy_user_session_path, method: :delete,class: 'd-none d-lg-block nav-link' %>
+            <%= link_to 'Customer contact', users_message_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'customer messege', users_message_path, class:"d-none d-lg-block nav-link mr-3" %>
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete,class: 'd-none d-lg-block nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'about', home_about_path, class:"d-none d-lg-block nav-link mr-3" %>
+            <%= link_to 'About', home_about_path, class:"nav-link" %>
           </li>
           <!--userの場合-->
           <% else %>
           <li class="nav-item">
-            <%= link_to 'my page',my_page_path(current_user),class: 'd-none d-lg-block nav-link mr-3' %>
+            <%= link_to 'My page',my_page_path(current_user),class: 'nav-link' %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">write now</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <%= link_to 'New Blog', new_blog_path, class: 'dropdown-item'%>
+              <%= link_to 'New Review', new_review_path, class: 'dropdown-item'%>
+              <%= link_to 'New Question', new_question_path, class: 'dropdown-item'%>
+            </div>
+           </li>
+          <li class="nav-item">
+            <%= link_to 'Blog',blogs_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'blog',blogs_path, class:"d-none d-lg-block nav-link mr-3" %>
+            <%= link_to 'Review', reviews_path, class: 'nav-link'%>
           </li>
           <li class="nav-item">
-            <%= link_to 'review', reviews_path, class: 'd-none d-lg-block nav-link mr-3'%>
+            <%= link_to 'Question', questions_path, class: 'nav-link'%>
           </li>
           <li class="nav-item">
-            <%= link_to 'question', questions_path, class: 'd-none d-lg-block nav-link mr-3'%>
+            <%= link_to 'Contact US', messages_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'log out', destroy_user_session_path, method: :delete,class: 'd-none d-lg-block nav-link' %>
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete,class: 'd-none d-lg-block nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Contact US', messages_path, class:"d-none d-lg-block nav-link mr-3" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'about', home_about_path, class:"d-none d-lg-block nav-link mr-3" %>
+            <%= link_to 'About', home_about_path, class:"nav-link" %>
           </li>
           <% end %>
         <!--ログインしていない場合-->
         <% else %>
           <li class="nav-item">
-            <%= link_to 'home', root_path, class:"d-none d-lg-block nav-link mr-3" %>
+            <%= link_to 'Home', root_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'about', home_about_path, class:"d-none d-lg-block nav-link mr-3" %>
+            <%= link_to 'About', home_about_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'sign up', new_user_registration_path,class: 'd-none d-lg-block nav-link mr-3' %>
+            <%= link_to 'Sign up', new_user_registration_path,class: 'nav-link' %>
           </li>
-          <li>
-            <%= link_to 'log in', new_user_session_path ,class: 'd-none d-lg-block nav-link'%>
+          <li class="nav-item">
+            <%= link_to 'Log in', new_user_session_path ,class: 'nav-link'%>
           </li>
-          <li>
-            <<%= link_to 'guest log in', users_guest_sign_in_path, method: :post %>
+          <li class="nav-item">
+            <%= link_to 'Guest Log in', users_guest_sign_in_path, method: :post ,class: 'nav-link'%>
           </li>
         <% end %>
         </div>
-        </ul>
-      </div>
-      <!----↓検索用のコード>
-      <!--<%# if user_signed_in? %>-->
-      <!--  <div class="search-form">-->
-      <!--    <div class="input-group">-->
-      <!--      <#= form_with url:search_path, method: "get", local: true do %>-->
-      <!--        <%#= text_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>-->
-      <!--        <span class="input-group-btn">-->
-      <!--        <%#= button_tag "", :name => nil, class: "fas fa-search" %>-->
-      <!--        </span>-->
-      <!--      <%# end %>-->
-      <!--    </div>-->
-      <!--  </div>-->
-      <!--<%# end %>-->
-
-  </nav>
+    </ul>
+  </div>
+</nav>
 </header>
