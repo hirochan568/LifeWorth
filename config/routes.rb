@@ -9,8 +9,10 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get "sign_in", :to => "users/sessions#new"
-    get "sign_out", :to => "users/sessions#destroy"
-   end
+    get '/users/sign_out' => 'devise/sessions#destroy'
+    get '/users/guest_sign_in' => 'users/sessions#new_guest'
+  end
+
 
   resources :users,only: [:index, :edit, :update]
    get '/users/:id/my_page', to: 'users#show', as: 'my_page'
@@ -49,27 +51,12 @@ Rails.application.routes.draw do
 
   root 'homes#top'
   get 'home/about' => 'homes#about'
-  
+
   # 検索へのpath
   get '/search', to: 'search#search'
 
-  # ゲストユーザー作成用
-  devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
-  end
-  # resources :books do
-  #   resource :favorites, only: [:create, :destroy]
-  #   resources :book_comments, only: [:create, :destroy]
-  # end
 
 
-
-
-
-#   namespace :users do
-#     resources :posts
-#   end
-#   root 'users/posts#index'
 
 
 end
