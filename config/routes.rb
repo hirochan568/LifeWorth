@@ -31,7 +31,6 @@ Rails.application.routes.draw do
   get '/blogs/:id/details', to: 'blogs#details', as: 'blog_details'
   get '/blogs/favorite', to: 'blogs#favorite', as: 'blogs_favorite'
 
-
   resources :reviews,only: [:index, :create, :edit, :update, :destroy, :new] do
     resource :review_favorites, only: [:create, :destroy]
     resources :review_comments, only: [:create, :destroy]

@@ -20,8 +20,12 @@ class ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.all
-
+    @categories = Category.all
+    if params[:category_id]
+      @reviews = Review.where(category_id: params[:category_id])
+    else
+       @reviews = Review.all
+    end
   end
 
   def show

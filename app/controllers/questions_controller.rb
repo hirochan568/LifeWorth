@@ -20,8 +20,12 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.all
-
+    @categories = Category.all
+    if params[:category_id]
+      @questions = Question.where(category_id: params[:category_id])
+    else
+       @questions = Question.all
+    end
   end
 
   def show
@@ -60,7 +64,7 @@ class QuestionsController < ApplicationController
     if @question.destroy
       flash[:success] = "You have destroyed article successfully."
       @user = @question.user
-      redirect_to user_blog_path(@user)
+      redirect_to user_question_path(@user)
     else
       @questions =  Question.where(user_id: params[:id])
       @user = User.find(params[:id])

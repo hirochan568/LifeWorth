@@ -16,12 +16,15 @@ class BlogsController < ApplicationController
       @categories = Category.all
       render :new
     end
-
   end
 
   def index
-    @blogs = Blog.all
-
+    @categories = Category.all
+    if params[:category_id]
+      @blogs = Blog.where(category_id: params[:category_id])
+    else
+       @blogs = Blog.all
+    end
   end
 
   def show
@@ -75,6 +78,11 @@ class BlogsController < ApplicationController
     @blogs =  Blog.where(id: blog_ids)
     #1行にすると@blogs =  Blog.where(id: BlogFavorite.where(user_id: current_user.id).select("blog_id as id"))
     #別の書き方 @blogs =  Blog.where(id: current_user.blog_favorites.map{|bf| bf.blog_id})
+  end
+
+  def category
+
+    # @blogs = Blog.where(category_id: category.id)
   end
 
   private

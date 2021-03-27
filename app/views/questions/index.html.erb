@@ -4,6 +4,12 @@
     <h1 class="display-3">A Question Welcome!</h1>
     <p class="lead">This is a list of user questions. Let's comment and follow!</p>
     <%= link_to 'LETS YOUR Question!!', user_question_path(current_user), class: "btn btn-primary btn-lg", role: '' %>
+    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">By category</a>
+    <div class="dropdown-menu" aria-labelledby="dropdown01">
+      <% @categories.each do |category| %>
+      <%= link_to category.name, questions_path(category_id: category.id), class: 'dropdown-item'%>
+      <% end %>
+    </div>
   </header>
 
   <!-- Page Features -->

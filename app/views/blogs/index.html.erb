@@ -1,9 +1,17 @@
 <div class="container">
-<!-- Jumbotron Header -->
+  <!-- Jumbotron Header -->
   <header class="jumbotron my-4">
     <h1 class="display-3">A BLOG Welcome!</h1>
     <p class="lead">This is a list of users' blogs. Let's comment and follow!</p>
     <%= link_to 'LETS YOUR BLOG!!', user_blog_path(current_user), class: "btn btn-primary btn-lg", role: '' %>
+
+    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">By category</a>
+    <div class="dropdown-menu" aria-labelledby="dropdown01">
+      <% @categories.each do |category| %>
+      <%= link_to category.name, blogs_path(category_id: category.id), class: 'dropdown-item'%>
+      <% end %>
+    </div>
+
   </header>
 
   <!-- Page Features -->
@@ -12,13 +20,10 @@
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card-body">
           <div class="cardwide h-100">
-
           <%= attachment_image_tag blog, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
-
             <div class='indexcard-body'>
               <h4 class="card-title"><%= blog.title.truncate(10) %></h5>
               <h6 class="card-text"><%= blog.body.truncate(12) %></h6>
-
             </div>
             <div class="indexcard-footer">
               ♥<%= blog.blog_favorites.count %> Like<br>
@@ -29,10 +34,8 @@
               <%= link_to 'Find Out More!', blog_details_path(blog), class: "btn btn-primary", position: 'bottom' %>
             </div>
           </div>
-
         </div>
-
       </div>
       <% end %>
     </div>
-  </div>
+</div>
