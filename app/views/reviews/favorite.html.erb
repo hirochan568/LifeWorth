@@ -5,11 +5,12 @@
       <th>User</th>
       <th>Title</th>
       <th>Opinion</th>
+      <th>Evaluation</th>
       <th>Category</th>
       <th>Favorite</th>
       <th>Comment</th>
       <th>Created date</th>
-      <th colspan="9"></th>
+      <th colspan="10"></th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,7 @@
           <% end %>
         </td>
         <td><%= review.body.truncate(12) %></td>
+        <td class="review-evaluation" data-score="<%= review.evaluation %>"></td>
         <td><%= review.category.name %></td>
         <td>
           <div id="reviewfavorites_buttons_<%= review.id %>">
@@ -36,3 +38,13 @@
     <% end %>
   </tbody>
 </table>
+
+<script>
+  $('.review-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
