@@ -15,7 +15,7 @@
 
           <div class="mb-3">
             <%= f.label :" ", class:"label" %>
-            <%= f.collection_select :category_id, @categories, :id, :name, prompt: "-- 選択してください --", style:'width: 300px;' %>
+            <%= f.collection_select :category_id, @categories, :id, :name, prompt: "-- Please select --", style:'width: 300px;' %>
           </div>
         </div>
 
@@ -43,9 +43,9 @@
 
           <div class="col-md-4">
             <%= f.radio_button :solution, true %>
-            <%= f.label :solution, '解決済み', value: true %>
+            <%= f.label :solution, 'Solved', value: true %>
             <%= f.radio_button :solution, false %>
-            <%= f.label :solution, '未解決', value: false %>
+            <%= f.label :solution, 'Unsolved', value: false %>
           </div>
         </div>
 
