@@ -1,0 +1,1 @@
+$("#questionfavorites_buttons_<%= @question.id %>").html("<%= j(render partial: 'question_favorites/question_favorite', locals: {question: @question, user: current_user}) %>");

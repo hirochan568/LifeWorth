@@ -24,7 +24,11 @@
         </td>
         <td><%= review.body.truncate(12) %></td>
         <td><%= review.category.name %></td>
-        <td><%= render 'review_favorites/review_favorite', review: review %></td>
+        <td>
+          <div id="reviewfavorites_buttons_<%= review.id %>">
+            <%= render 'review_favorites/review_favorite', review: review %>
+          </div>
+        </td>
         <td><%= review.review_comments.count %></td>
         <td> <%= review.created_at.strftime('%Y/%m/%d') %></td>
 

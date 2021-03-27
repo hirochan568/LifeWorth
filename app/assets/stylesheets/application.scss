@@ -32,10 +32,19 @@ header{
     padding-right: 16px;
 }
 
+/*メインコンテンツ*/
+#contents {
+    display: flex;
+    flex-flow: column;
+}
+
 .wrapper{
     box-sizing: border-box;
     /* ↑ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定 */
+    width: 100%;
+    min-height: 100%;
 }
+
 .headline{
     font-family: 'Caveat', cursive;
     font-size: 1.5rem;
@@ -58,23 +67,22 @@ header{
      padding-left: 0;
 }
 
-.body {
+html,　body {
     width: 100%;
     height: 100%;
     padding: 0;
-    position: absolute;
     font-size: 1rem;
 }
 
-
-
-.footer-style {
-    // position: absolute;/* ←絶対位置 */
-    // bottom: 0;
+footer{
+    height: 60px; /*フッターの高さ*/
+    bottom:0;
     /* 以下 背景色やテキストカラーなどはお好みで指定してください */
     background-color: powderblue;
     color: #fff;
     text-align: center;
+    width: 100%;
+    bottom: 0;
 }
 
 // detailsページの変更部分
@@ -108,7 +116,6 @@ header{
     width: auto;
     height: 450px;
     // 領域外にはみ出た部分の折り返し
-
 }
 
 .cardwid{
@@ -118,7 +125,6 @@ header{
 }
 
 .indexcard-footer{
-
     padding: auto;
     text-align: left;
     width: 215px;
