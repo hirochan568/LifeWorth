@@ -14,6 +14,7 @@
         <div class="comments-count" id="review_<%= @review.id %>" >
         <p><%= @review.review_comments.count %> comment</p>
         </div>
+        <div class="review-evaluation" data-score="<%= @review.evaluation %>"></div>
         <div id="reviewfavorites_buttons_<%= @review.id %>"><%= render 'review_favorites/review_favorite', review: @review %></div>
         <hr>
         <!-- Date/Time -->
@@ -53,3 +54,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.review-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>

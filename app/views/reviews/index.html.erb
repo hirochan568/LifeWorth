@@ -12,29 +12,33 @@
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card-body">
         <div class="cardwide h-100">
-
-        <%= attachment_image_tag review, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
-
+          <%= attachment_image_tag review, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
           <div class='indexcard-body'>
             <h4 class="card-title"><%= review.title.truncate(10) %></h5>
             <h6 class="card-text"><%= review.body.truncate(12) %></h6>
-
           </div>
           <div class="indexcard-footer">
+            <div class="review-evaluation" data-score="<%= review.evaluation %>"></div>
             ♥<%= review.review_favorites.count %> Like<br>
             <%= review.review_comments.count %> comment<br>
-             Category: <%= review.category.name %><br>
-           Posted by <%= link_to review.user.name, user_review_path(review.user_id) %><br>
-           <%= review.created_at.strftime('%Y/%m/%d') %><br>
+            Category: <%= review.category.name %><br>
+            Posted by <%= link_to review.user.name, user_review_path(review.user_id) %><br>
+            <%= review.created_at.strftime('%Y/%m/%d') %><br>
             <%= link_to 'Find Out More!', review_details_path(review), class: "btn btn-primary", position: 'bottom' %>
           </div>
         </div>
-
       </div>
-
     </div>
     <% end %>
   </div>
-    <!-- /.row -->
+</div>
 
-  </div>
+  <script>
+  $('.review-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>

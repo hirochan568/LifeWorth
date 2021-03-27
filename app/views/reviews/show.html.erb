@@ -25,6 +25,7 @@
                 <%= attachment_image_tag review, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
                 <div class="card-body">
                   <h4 class="card-title"> <%= idx %>article</h4>
+                  <div class="review-evaluation" data-score="<%= review.evaluation %>"></div>
                   <h2 class="card-title"><%= review.title.truncate(35) %></h2>
                   <p class="card-text"><%= review.body.truncate(200) %></p>
                   <%= link_to 'Read More →', review_details_path(review), class: "btn btn-primary", role: "" %>
@@ -49,3 +50,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.review-evaluation').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>

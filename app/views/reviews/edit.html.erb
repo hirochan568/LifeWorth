@@ -19,6 +19,9 @@
           </div>
         </div>
 
+        <div id="evaluate_stars">
+          <label>Evaluation</label>
+        </div>
 
 
         <div class="mb-3">
@@ -45,3 +48,12 @@
     </div>
   </div>
 </div>
+
+      <script>
+        $('#evaluate_stars').raty({
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          scoreName: 'review[evaluation]' //登録するモデル名とカラム名を記述
+        });
+      </script>
