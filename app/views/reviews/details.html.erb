@@ -1,10 +1,7 @@
 <div class="container">
-
     <div class="row">
-
       <!-- Post Content Column -->
       <div class="col-lg-8">
-
         <!-- Title -->
         <div class="detail-title">
         <h1 class="mt-4"><%= @review.title %></h1>
@@ -14,10 +11,11 @@
           by
           <%= link_to @review.user.name, user_review_path(@user) %>
         </p>
-        <p><%= @review.review_comments.count %> comment</p><%= render 'review_favorites/review_favorite', review: @review %>
-
+        <div class="comments-count" id="review_<%= @review.id %>" >
+        <p><%= @review.review_comments.count %> comment</p>
+        </div>
+        <div id="reviewfavorites_buttons_<%= @review.id %>"><%= render 'review_favorites/review_favorite', review: @review %></div>
         <hr>
-
         <!-- Date/Time -->
         Posted on <%= @review.created_at.strftime('%Y/%m/%d') %>  by <%= @review.user.name %>
         <!--edit/delete-->
@@ -26,129 +24,32 @@
           <%= link_to "Delete", review_path(@review), method: :delete, class: "btn btn-sm btn-danger destroy_book" %>
         <% end %>
         <hr>
-
         <!-- Preview Image -->
         <%= attachment_image_tag @review, :image , size: 'auto', alt: "" , class: "img-fluid rounded" %>
-
         <hr>
-
         <!-- Post Content -->
         <div class="detail-content">
         <p class="lead"><%= @review.body %></p>
-        </div>
-
         <!-- Comments Form -->
-        <%= form_with(model:[@review, @review_comment], local: true) do |f| %>
-        <div class="card my-4">
-          <h5 class="card-header">Post a Comment:</h5>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <%= f.text_area :comment, rows:'3', class: "form-control", placeholder: "Please write your comment here" %>
-              </div>
-              <%= f.submit "Post", class: "btn btn-primary"  %>
-            </form>
-          </div>
-        </div>
-        <% end %>
-
-        <!-- someone Comment -->
-         <%= render 'review_comments/review_details', review: @review %>
-
-
-        <!-- Comment with nested comments -->
-      <!--  <div class="media mb-4">-->
-      <!--    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
-      <!--    <div class="media-body">-->
-      <!--      <h5 class="mt-0">Commenter Name</h5>-->
-      <!--      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
-
-      <!--      <div class="media mt-4">-->
-      <!--        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
-      <!--        <div class="media-body">-->
-      <!--          <h5 class="mt-0">Commenter Name</h5>-->
-      <!--          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
-      <!--        </div>-->
-      <!--      </div>-->
-
-      <!--      <div class="media mt-4">-->
-      <!--        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
-      <!--        <div class="media-body">-->
-      <!--          <h5 class="mt-0">Commenter Name</h5>-->
-      <!--          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
-      <!--        </div>-->
-      <!--      </div>-->
-
-      <!--    </div>-->
-      <!--  </div>-->
-
-      <!--</div>-->
-
-      <!-- Sidebar Widgets Column -->
-      <!--<div class="col-md-4">-->
-
-        <!-- Search Widget -->
-      <!--  <div class="card my-4">-->
-      <!--    <h5 class="card-header">Search</h5>-->
-      <!--    <div class="card-body">-->
-      <!--      <div class="input-group">-->
-      <!--        <input type="text" class="form-control" placeholder="Search for...">-->
-      <!--        <span class="input-group-append">-->
-      <!--          <button class="btn btn-secondary" type="button">Go!</button>-->
-      <!--        </span>-->
-      <!--      </div>-->
-      <!--    </div>-->
-      <!--  </div>-->
-
-        <!-- Categories Widget -->
-      <!--  <div class="card my-4">-->
-      <!--    <h5 class="card-header">Categories</h5>-->
-      <!--    <div class="card-body">-->
-      <!--      <div class="row">-->
-      <!--        <div class="col-lg-6">-->
-      <!--          <ul class="list-unstyled mb-0">-->
-      <!--            <li>-->
-      <!--              <a href="#">Web Design</a>-->
-      <!--            </li>-->
-      <!--            <li>-->
-      <!--              <a href="#">HTML</a>-->
-      <!--            </li>-->
-      <!--            <li>-->
-      <!--              <a href="#">Freebies</a>-->
-      <!--            </li>-->
-      <!--          </ul>-->
-      <!--        </div>-->
-      <!--        <div class="col-lg-6">-->
-      <!--          <ul class="list-unstyled mb-0">-->
-      <!--            <li>-->
-      <!--              <a href="#">JavaScript</a>-->
-      <!--            </li>-->
-      <!--            <li>-->
-      <!--              <a href="#">CSS</a>-->
-      <!--            </li>-->
-      <!--            <li>-->
-      <!--              <a href="#">Tutorials</a>-->
-      <!--            </li>-->
-                </ul>
-              </div>
+          <%= form_with model:[@review, @review_comment], remote: true do |f| %>
+          <div class="card my-4">
+            <h5 class="card-header">Post a Comment:</h5>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <%= f.text_area :comment, rows:'3', class: "form-control", placeholder: "Please write your answer here",id: "reviewtexture_area"  %>
+                </div>
+                <%= f.submit "Post", class: "btn btn-primary"  %>
+              </form>
             </div>
           </div>
+          <% end %>
+          <!-- Side Widget -->
+          <h5 class="card-header">Responses from other users</h5>
         </div>
-
-
-
-
-        <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
+        <div id="reviewcomments_area">
+          <%= render 'review_comments/review_details', review: @review %>
         </div>
-
-      </div>
-
     </div>
-    <!-- /.row -->
-
   </div>
+</div>

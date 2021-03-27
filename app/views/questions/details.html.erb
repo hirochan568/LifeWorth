@@ -1,10 +1,7 @@
-<div class="container">
-
+  <div class="container">
     <div class="row">
-
       <!-- Post Content Column -->
       <div class="col-lg-8">
-
         <!-- Title -->
         <div class="detail-title">
         <h1 class="mt-4"><%= @question.title %></h1>
@@ -14,15 +11,14 @@
           by
           <%= link_to @question.user.name, user_question_path(@user) %>
         </p>
-        <p><%= @question.question_comments.count %> comment</p><%= render 'question_favorites/question_favorite', question: @question %>
+        <p><%= @question.question_comments.count %> comment</p>
+        <div id="questionfavorites_buttons_<%= @question.id %>"><%= render 'question_favorites/question_favorite', question: @question %></div>
         <% if @question.solution == true %>
           <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">Status: solved</div>
         <% else %>
           <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">Status: Unresolved</div>
         <% end %>
-
         <hr>
-
         <!-- Date/Time -->
         Posted on <%= @question.created_at.strftime('%Y/%m/%d') %>  by <%= @question.user.name %>
         <!--edit/delete-->
@@ -31,129 +27,32 @@
           <%= link_to "Delete", question_path(@question), method: :delete, class: "btn btn-sm btn-danger destroy_book" %>
         <% end %>
         <hr>
-
         <!-- Preview Image -->
         <%= attachment_image_tag @question, :image , size: 'auto', alt: "" , class: "img-fluid rounded" %>
-
         <hr>
-
         <!-- Post Content -->
         <div class="detail-content">
-        <p class="lead"><%= @question.body %></p>
-
-
-        <!-- Comments Form -->
-        <%= form_with(model:[@question, @question_comment], local: true) do |f| %>
-        <div class="card my-4">
-          <h5 class="card-header">Post a Comment:</h5>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <%= f.text_area :comment, rows:'3', class: "form-control", placeholder: "Please write your comment here" %>
-              </div>
-              <%= f.submit "Post", class: "btn btn-primary"  %>
-            </form>
-          </div>
-        </div>
-        <% end %>
-
-        <!-- someone Comment -->
-         <%= render 'question_comments/question_details', question: @question %>
-
-
-        <!-- Comment with nested comments -->
-      <!--  <div class="media mb-4">-->
-      <!--    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
-      <!--    <div class="media-body">-->
-      <!--      <h5 class="mt-0">Commenter Name</h5>-->
-      <!--      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
-
-      <!--      <div class="media mt-4">-->
-      <!--        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
-      <!--        <div class="media-body">-->
-      <!--          <h5 class="mt-0">Commenter Name</h5>-->
-      <!--          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
-      <!--        </div>-->
-      <!--      </div>-->
-
-      <!--      <div class="media mt-4">-->
-      <!--        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
-      <!--        <div class="media-body">-->
-      <!--          <h5 class="mt-0">Commenter Name</h5>-->
-      <!--          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
-      <!--        </div>-->
-      <!--      </div>-->
-
-      <!--    </div>-->
-      <!--  </div>-->
-
-      <!--</div>-->
-
-      <!-- Sidebar Widgets Column -->
-      <!--<div class="col-md-4">-->
-
-        <!-- Search Widget -->
-      <!--  <div class="card my-4">-->
-      <!--    <h5 class="card-header">Search</h5>-->
-      <!--    <div class="card-body">-->
-      <!--      <div class="input-group">-->
-      <!--        <input type="text" class="form-control" placeholder="Search for...">-->
-      <!--        <span class="input-group-append">-->
-      <!--          <button class="btn btn-secondary" type="button">Go!</button>-->
-      <!--        </span>-->
-      <!--      </div>-->
-      <!--    </div>-->
-      <!--  </div>-->
-
-        <!-- Categories Widget -->
-      <!--  <div class="card my-4">-->
-      <!--    <h5 class="card-header">Categories</h5>-->
-      <!--    <div class="card-body">-->
-      <!--      <div class="row">-->
-      <!--        <div class="col-lg-6">-->
-      <!--          <ul class="list-unstyled mb-0">-->
-      <!--            <li>-->
-      <!--              <a href="#">Web Design</a>-->
-      <!--            </li>-->
-      <!--            <li>-->
-      <!--              <a href="#">HTML</a>-->
-      <!--            </li>-->
-      <!--            <li>-->
-      <!--              <a href="#">Freebies</a>-->
-      <!--            </li>-->
-      <!--          </ul>-->
-      <!--        </div>-->
-      <!--        <div class="col-lg-6">-->
-      <!--          <ul class="list-unstyled mb-0">-->
-      <!--            <li>-->
-      <!--              <a href="#">JavaScript</a>-->
-      <!--            </li>-->
-      <!--            <li>-->
-      <!--              <a href="#">CSS</a>-->
-      <!--            </li>-->
-      <!--            <li>-->
-      <!--              <a href="#">Tutorials</a>-->
-      <!--            </li>-->
-                </ul>
-              </div>
+          <p class="lead"><%= @question.body %></p>
+          <!-- Comments Form -->
+          <%= form_with model:[@question, @question_comment], remote: true do |f| %>
+          <div class="card my-4">
+            <h5 class="card-header">Post a Comment:</h5>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <%= f.text_area :comment, rows:'3', class: "form-control", placeholder: "Please write your answer here",id: "questiontexture_area"  %>
+                </div>
+                <%= f.submit "Post", class: "btn btn-primary"  %>
+              </form>
             </div>
           </div>
+          <% end %>
+          <!-- Side Widget -->
+          <h5 class="card-header">Answers to questions from users</h5>
         </div>
-
-
-
-
-        <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
+        <div id="questioncomments_area">
+          <%= render 'question_comments/question_details', question: @question %>
         </div>
-
       </div>
-
     </div>
-    <!-- /.row -->
-
   </div>

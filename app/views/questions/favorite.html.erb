@@ -31,7 +31,11 @@
         </td>
         <td><%= question.body.truncate(12) %></td>
         <td><%= question.category.name %></td>
-        <td><%= render 'question_favorites/question_favorite', question: question %></td>
+        <td>
+          <div id="questionfavorites_buttons_<%= question.id %>">
+            <%= render 'question_favorites/question_favorite', question: question %>
+          </div>
+        </td>
         <td><%= question.question_comments.count %></td>
         <td> <%= question.created_at.strftime('%Y/%m/%d') %></td>
 

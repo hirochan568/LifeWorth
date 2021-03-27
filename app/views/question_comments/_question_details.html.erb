@@ -1,17 +1,4 @@
-<!-- Comments Form -->
-<!--        <div class="card my-4">-->
-<!--          <h5 class="card-header">Leave a Comment:</h5>-->
-<!--          <div class="card-body">-->
-<!--            <form>-->
-<!--              <div class="form-group">-->
-<!--                <textarea class="form-control" rows="3"></textarea>-->
-<!--              </div>-->
-<!--              <button type="submit" class="btn btn-primary">Submit</button>-->
-<!--            </form>-->
-<!--          </div>-->
-<!--        </div>-->
 
-        <!-- Single Comment -->
         <div class='comment'>
 
           <% question.question_comments.each do |question_comment| %>
@@ -23,7 +10,7 @@
             Posted on <%= question_comment.created_at.strftime('%Y/%m/%d') %>
             <% if question_comment.user == current_user %>
             <div class="comment-delete">
-            <%= link_to "Delete", question_question_comment_path(question, question_comment), method: :delete, class: "btn btn-sm btn-danger destroy_book" %>
+            <%= link_to "Delete", question_question_comment_path(question, question_comment), method: :delete ,remote: true, class: "btn btn-sm btn-danger destroy_book" %>
             </div>
             <% end %>
           <br>

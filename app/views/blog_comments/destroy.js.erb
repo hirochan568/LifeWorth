@@ -1,0 +1,2 @@
+$("#blogcomments_area").html("<%= j(render partial: 'blog_comments/blog_details', locals: {blog: @blog, blog_comment: @blog_comment}) %>");
+<!----  ↑　更新したいエリアの指定　　　　↑　アクションしたい対象の部分テンプレート　　↑アクションする際に必要なローカル変数（book_command内のコントローラーに記載）>

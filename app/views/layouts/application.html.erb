@@ -11,20 +11,21 @@
 
   <body>
     <div class="wrapper">
-
+      <header>
         <%= render "layouts/header" %>
+      </header>
       <div class='headline'>
         <%= render 'layouts/flash_message'%>
         <% if user_signed_in? %>
         <%= render 'layouts/search' %>
         <% end %>
       </div>
-
-
-
-
-      <%= yield %>
+      <div id="contents">
+        <%= yield %>
+      </div>
+      <%= render 'layouts/footer' %>
     </div>
+
   </body>
-  <%= render 'layouts/footer' %>
+
 </html>

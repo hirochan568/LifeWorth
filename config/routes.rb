@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'search/search'
   # ↓デバイスにより生成
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
@@ -10,7 +9,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get "sign_in", :to => "users/sessions#new"
     get '/users/sign_out' => 'devise/sessions#destroy'
-    get '/users/guest_sign_in' => 'users/sessions#new_guest'
+    post '/users/guest_sign_in' => 'users/sessions#new_guest'
   end
 
 
