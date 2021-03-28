@@ -115,6 +115,8 @@ footer{
 .card-body{
     width: auto;
     height: 450px;
+    z-index:  1;
+    position:  relative;
     // 領域外にはみ出た部分の折り返し
 }
 
@@ -145,3 +147,34 @@ footer{
     background-color: red;
 }
 
+.mb-4, .my-4 {
+    margin-bottom: 4rem !important;
+}
+
+.text-center {
+    text-align: center !important;
+    z-index:  1;                     /* 重なり順指定 */
+    position:  relative;
+}
+
+.dropdown-menu.show {
+    display: block;
+    z-index:  9999;                     /* 重なり順指定 */
+    position:  absolute;                   /* 位置指定 */
+    font-size: 1.5rem;
+}
+
+.dropright{
+    font-family: 'Caveat', cursive;
+    font-size: 1rem;
+}
+
+
+// 数か所以上の使用のため改造箇所のみbootstrap名を追加
+.category-tab {
+    color: #fff !important;
+    background-color: blue;
+    border-color: #6c757d;
+    font-size: 1.5rem;
+    margin-left: 20px;
+}

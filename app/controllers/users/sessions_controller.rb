@@ -17,7 +17,7 @@ class Users::SessionsController < Devise::SessionsController
      if current_user.is_admin?
      users_path(resource.id)
      else
-     users_path(resource.id)
+     my_page_path(resource.id)
      end
   end
 

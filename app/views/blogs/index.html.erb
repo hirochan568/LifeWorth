@@ -4,15 +4,18 @@
     <h1 class="display-3">A BLOG Welcome!</h1>
     <p class="lead">This is a list of users' blogs. Let's comment and follow!</p>
     <%= link_to 'LETS YOUR BLOG!!', user_blog_path(current_user), class: "btn btn-primary btn-lg", role: '' %>
+  </header>
 
-    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">By category</a>
-    <div class="dropdown-menu" aria-labelledby="dropdown01">
+  <div class="btn-group dropright">
+    <button type="button" class="btn btn-secondary dropdown-toggle category-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     By category
+    </button>
+    <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
       <% @categories.each do |category| %>
       <%= link_to category.name, blogs_path(category_id: category.id), class: 'dropdown-item'%>
       <% end %>
     </div>
-
-  </header>
+  </div>
 
   <!-- Page Features -->
     <div class="row text-center">

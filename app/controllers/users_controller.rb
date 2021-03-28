@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   # beforeアクションによりupdateとdestroyのみゲストか確かめる
   before_action :ensure_normal_user, only: %i[update destroy]
   before_action :admin_user, only: %i[people message]
+  before_action :ensure_correct_user, only: [:update, :edit, :show]
 
   def ensure_normal_user
     if current_user.email == 'guest@example.com'
@@ -52,6 +53,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :nickname, :email, :telephone)
+  end
+
+  def ensure_correct_user
+     @user = User.find(params[:id])
+    if @user.id != current_user.id
+      redirect_to  root_path, warning: 'Warning: You will not be able to access another user page!'
+    end
   end
 
 end
