@@ -23,8 +23,9 @@ class Question < ApplicationRecord
     end
   end
 
-  validates :title, presence: true
-  validates :body, presence: true
+  validates :title, presence: true, length: {maximum: 20, minimum: 5}
+	validates :body, presence: true, length: {maximum: 300, minimum: 20
+}
   # メッセージでのエラー入力
   validates :category_id, presence: {message: 'category is required！！'}
 

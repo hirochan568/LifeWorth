@@ -35,7 +35,7 @@ end
 
 Category.seed do |s|
   s.id = 8
-  s.name = 'Program'
+  s.name = 'Skill'
 end
 
 Category.seed do |s|
