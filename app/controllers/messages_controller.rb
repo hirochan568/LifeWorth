@@ -2,8 +2,13 @@ class MessagesController < ApplicationController
 
   def index
    @message = Message.new
-   @user = current_user
-   @messages = @user.messages
+   if current_user.is_admin
+     @user = User.all
+     @messages = Message.all
+   else
+     @user = current_user
+     @messages = @user.messages
+   end
   end
 
   def create
@@ -11,7 +16,7 @@ class MessagesController < ApplicationController
     @message.user_id = current_user.id
     if  @message.save
       flash[:success] = 'Post is complete！Please wait for a while until the administrator responds.'
-      redirect_to messages_path(current_user)
+      redirect_to messages_path
     else
       @user = current_user
       @messages = @user.messages

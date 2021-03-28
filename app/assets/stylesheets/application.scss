@@ -126,6 +126,11 @@ footer{
 	white-space: nowrap;
 }
 
+.lead {
+    font-size: 3rem;
+    font-weight: 300;
+}
+
 .indexcard-footer{
     padding: auto;
     text-align: left;
@@ -177,4 +182,18 @@ footer{
     border-color: #6c757d;
     font-size: 1.5rem;
     margin-left: 20px;
+}
+
+.form-control-search{
+    font-size: 2rem;
+}
+
+.btn-search{
+    font-size: 1.7rem;
+    height: 45px;
+    margin-top: 0;
+}
+
+.btn-search2{
+    font-size: 2rem !important;
 }

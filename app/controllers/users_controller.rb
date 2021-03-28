@@ -44,10 +44,11 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def message
-    @messages = Message.all
-    render template: 'messages/index'
-  end
+  # TODO: 学習のため管理者が閲覧した際にメッセージのindexに飛び全ユーザーを参照できるように設定した
+  # def message
+  #   @messages = Message.all
+  #   render template: 'messages/index'
+  # end
 
   private
 

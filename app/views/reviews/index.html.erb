@@ -2,12 +2,13 @@
 <!-- Jumbotron Header -->
   <header class="jumbotron my-4">
     <h1 class="display-3">A Review Welcome!</h1>
-    <p class="lead">This is a list of user reviews. Let's comment and follow!</p>
+    <p class="lead">This is a list of users' reviews.  Let's comment and follow! Take a look at everyone's reviews and use them as your own opinions and references.</p>
+    <p class="lead">↓　Go to your Review list page.</p>
     <%= link_to 'LETS YOUR Review!!', user_review_path(current_user), class: "btn btn-primary btn-lg", role: '' %>
   </header>
 
   <div class="btn-group dropright">
-    <button type="button" class="btn btn-secondary dropdown-toggle　category-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button type="button" class="btn btn-secondary dropdown-toggle category-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
      By category
     </button>
     <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">

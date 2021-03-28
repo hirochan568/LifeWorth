@@ -1,12 +1,14 @@
 <div class="container">
 <!-- Jumbotron Header -->
   <header class="jumbotron my-4">
-    <h1 class="display-3">Welcome　Contact　US!</h1>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+    <h1 class="display-3">Welcome　Contact　Us!</h1>
+    <p class="lead">Here you can communicate your request to the administrator.Send us a message if you would like to add a category or anything else.</p>
+    <p class="lead">Please feel free to write anything♪</p>
   </header>
 
   <!-- Comments Form -->
-        <%= form_with model: @message, local: true do |f| %>
+        <%= form_with model: @message, url: messages_path, local: true do |f| %>
+        <%= render "users/shared/error_messages", resource: @message %>
         <div class="card my-4">
           <h5 class="card-header">Post a Message:</h5>
           <div class="contactcard-body">
