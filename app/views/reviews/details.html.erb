@@ -26,23 +26,21 @@
         <% end %>
         <hr>
         <!-- Preview Image -->
-        <%= attachment_image_tag @review, :image , size: 'auto', alt: "" , class: "img-fluid rounded" %>
+        <%= attachment_image_tag @review, :image , size: 'auto', fallback: "no_image.jpg", alt: "" , class: "img-fluid rounded" %>
         <hr>
         <!-- Post Content -->
         <div class="detail-content">
-        <p class="lead"><%= @review.body %></p>
+        <p class="detaillead"><%= @review.body %></p>
         <!-- Comments Form -->
           <%= form_with model:[@review, @review_comment], remote: true do |f| %>
           <div class="card my-4">
             <h5 class="card-header">Post a Comment: Please enter at least 5 characters for the comment.</h5>
-            <div class="card-body">
               <form>
-                <div class="form-group">
+                <div>
                   <%= f.text_area :comment, rows:'3', class: "form-control", placeholder: "Please write your answer here",id: "reviewtexture_area"  %>
                 </div>
                 <%= f.submit "Post", class: "btn btn-primary"  %>
               </form>
-            </div>
           </div>
           <% end %>
           <!-- Side Widget -->
@@ -58,9 +56,11 @@
 <script>
   $('.review-evaluation').raty({
     readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
     score: function() {
       return $(this).attr('data-score');
     },
-    path: '/assets/'
   });
 </script>

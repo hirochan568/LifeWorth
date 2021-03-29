@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
     @question.user_id = current_user.id
     if  @question.save
       flash[:success] = 'Post is complete！'
-      redirect_to user_question_path(current_user)
+      redirect_to question_details_path(@question)
     else
       @categories = Category.all
       render :new
@@ -52,7 +52,7 @@ class QuestionsController < ApplicationController
     @user = @question.user
     if @question.update(question_params)
       flash[:success] = "You have updated article successfully."
-      redirect_to  user_question_path(current_user)
+      redirect_to  question_details_path(@question)
     else
       @categories = Category.all
       render "edit"

@@ -23,7 +23,9 @@
             <% @questions.each.with_index(1) do |question, idx| %>
             <div class='show-card'>
               <div class="card mb-4">
+                <%= link_to question_details_path(question) do %>
                 <%= attachment_image_tag question, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
+                <% end %>
                 <div class="card-body">
                   <h4 class="card-title"> <%= idx %>article</h4>
                   <% if question.solution == true %>

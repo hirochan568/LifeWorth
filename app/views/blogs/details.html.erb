@@ -7,12 +7,12 @@
         <h1 class="mt-4"><%= @blog.title %></h1>
       </div>
       <!-- Author -->
-      <p class="lead">
+      <div class="lead">
       by
       <%= link_to @blog.user.name, user_blog_path(@user) %>
-      </p>
+      </div>
         <div class="comments-count" id="blog_<%= @blog.id %>" >
-        <p><%= @blog.blog_comments.count %> comment</p>
+        <div><%= @blog.blog_comments.count %> comment</div>
         </div>
         <div id="blogfavorites_buttons_<%= @blog.id %>"><%= render 'blog_favorites/blog_favorite', blog: @blog %></div>
         <hr>
@@ -25,23 +25,21 @@
         <% end %>
         <hr>
         <!-- Preview Image -->
-        <%= attachment_image_tag @blog, :image , size: 'auto', alt: "" , class: "img-fluid rounded" %>
+        <%= attachment_image_tag @blog, :image , size: 'auto', fallback: "no_image.jpg", alt: "" , class: "img-fluid rounded" %>
         <hr>
         <!-- Post Content -->
         <div class="detail-content">
-        <p class="lead"><%= @blog.body %></p>
+        <p class="detaillead"><%= @blog.body %></p>
         <!-- Comments Form -->
           <%= form_with model:[@blog, @blog_comment], remote: true do |f| %>
           <div class="card my-4">
             <h5 class="card-header">Post a Comment: Please enter at least 5 characters for the comment.</h5>
-            <div class="card-body">
               <form>
-                <div class="form-group">
+                <div>
                   <%= f.text_area :comment, rows:'3', class: "form-control", placeholder: "Please write your answer here",id: "blogtexture_area"  %>
                 </div>
-                <%= f.submit "Post", class: "btn btn-primary"  %>
+                <%= f.submit "Post", class: "btn btn-primary btn-lg"  %>
               </form>
-            </div>
           </div>
           <% end %>
           <!-- Side Widget -->

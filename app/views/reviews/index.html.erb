@@ -3,8 +3,9 @@
   <header class="jumbotron my-4">
     <h1 class="display-3">A Review Welcome!</h1>
     <p class="lead">This is a list of users' reviews.  Let's comment and follow! Take a look at everyone's reviews and use them as your own opinions and references.</p>
-    <p class="lead">↓　Go to your Review list page.</p>
-    <%= link_to 'LETS YOUR Review!!', user_review_path(current_user), class: "btn btn-primary btn-lg", role: '' %>
+    <p class="lead">↓　Go to your Review list page.　Or start Review!</p>
+    <%= link_to 'LETS YOUR REVIEW PAGE!!', user_review_path(current_user), class: "btn btn-primary btn-lg", role: '' %>
+    <%= link_to 'Ｎｅｗ', new_review_path, class: "btn btn-primary btn-lg", role: '' %>
   </header>
 
   <div class="btn-group dropright">
@@ -24,7 +25,9 @@
     <div class="col-lg-3 col-md-6 mb-4">
       <div class="card-body">
         <div class="cardwide h-100">
+          <%= link_to review_details_path(review) do %>
           <%= attachment_image_tag review, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
+          <% end %>
           <div class='indexcard-body'>
             <h4 class="card-title"><%= review.title.truncate(10) %></h5>
             <h6 class="card-text"><%= review.body.truncate(12) %></h6>
@@ -48,9 +51,11 @@
   <script>
   $('.review-evaluation').raty({
     readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
     score: function() {
       return $(this).attr('data-score');
     },
-    path: '/assets/'
   });
 </script>

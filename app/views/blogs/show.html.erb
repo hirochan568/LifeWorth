@@ -23,11 +23,13 @@
             <% @blogs.each.with_index(1) do |blog, idx| %>
             <div class='show-card'>
               <div class="card mb-4">
+                <%= link_to blog_details_path(blog) do %>
                 <%= attachment_image_tag blog, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
+                <% end %>
                 <div class="card-body">
                   <h4 class="card-title"> <%= idx %>article</h4>
                   <h2 class="card-title"><%= blog.title.truncate(35) %></h2>
-                  <p class="card-text"><%= blog.body.truncate(200) %></p>
+                  <div class="card-text"><%= blog.body.truncate(200) %></div>
                   <%= link_to 'Read More →', blog_details_path(blog), class: "btn btn-primary", role: "" %>
 
                 </div>

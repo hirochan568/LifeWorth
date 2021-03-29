@@ -11,7 +11,7 @@ class BlogsController < ApplicationController
     @blog.user_id = current_user.id
     if  @blog.save
       flash[:success] = 'Post is complete！'
-      redirect_to user_blog_path(current_user)
+      redirect_to blog_details_path(@blog)
     else
       @categories = Category.all
       render :new
@@ -51,7 +51,7 @@ class BlogsController < ApplicationController
     @user = @blog.user
     if @blog.update(blog_params)
       flash[:success] = "You have updated article successfully."
-      redirect_to  user_blog_path(current_user)
+      redirect_to  blog_details_path(@blog)
     else
       @categories = Category.all
       render "edit"

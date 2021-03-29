@@ -3,8 +3,11 @@
   <header class="jumbotron my-4">
     <h1 class="display-3">A BLOG Welcome!</h1>
     <p class="lead">This is a list of users' blogs. Let's comment and follow! This is the blog posting page. Look at everyone's experiences and diaries to discover and tell new discoveries.</p>
-    <p class="lead">↓　Go to your Blog list page.</p>
-    <%= link_to 'LETS YOUR BLOG!!', user_blog_path(current_user), class: "btn btn-primary btn-lg", role: '' %>
+    <p class="lead">↓　Go to your Blog list page.　Or start Blog!</p>
+    <%= link_to 'LETS YOUR BLOG PAGE!!', user_blog_path(current_user), class: "btn btn-primary btn-lg", role: '' %>
+    <%= link_to 'Ｎｅｗ', new_blog_path, class: "btn btn-primary btn-lg", role: '' %>
+
+
   </header>
 
   <div class="btn-group dropright">
@@ -24,7 +27,9 @@
       <div class="col-lg-3 col-md-6 mb-4">
         <div class="card-body">
           <div class="cardwide h-100">
-          <%= attachment_image_tag blog, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
+            <%= link_to blog_details_path(blog) do %>
+            <%= attachment_image_tag blog, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
+            <% end %>
             <div class='indexcard-body'>
               <h4 class="card-title"><%= blog.title.truncate(10) %></h5>
               <h6 class="card-text"><%= blog.body.truncate(12) %></h6>

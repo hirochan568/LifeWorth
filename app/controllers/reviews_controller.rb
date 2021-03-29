@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     if  @review.save
       flash[:success] = 'Post is complete！'
-      redirect_to user_review_path(current_user)
+      redirect_to review_details_path(@review)
     else
       @categories = Category.all
       render :new
@@ -52,7 +52,7 @@ class ReviewsController < ApplicationController
     @user = @review.user
     if @review.update(review_params)
       flash[:success] = "You have updated article successfully."
-      redirect_to  user_review_path(current_user)
+      redirect_to  review_details_path(@review)
     else
       @categories = Category.all
       render "edit"
