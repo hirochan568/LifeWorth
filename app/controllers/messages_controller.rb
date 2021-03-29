@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.user_id = current_user.id
     if  @message.save
-      flash[:success] = 'Post is complete！Please wait for a while until the administrator responds.'
+      flash[:success] = 'Message is complete！'
       redirect_to messages_path
     else
       @user = current_user
