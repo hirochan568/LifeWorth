@@ -29,8 +29,13 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @reviews =  Review.where(user_id: params[:id])
+    @categories = Category.all
     @user = User.find(params[:id])
+    if params[:category_id]
+      @reviews = Review.where(category_id: params[:category_id], user_id: params[:id])
+    else
+      @reviews = Review.where(user_id: params[:id])
+    end
   end
 
   def details

@@ -12,7 +12,7 @@
 
   <div class="btn-group dropright">
     <button type="button" class="btn btn-secondary dropdown-toggle category-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-     By category
+     Select Category
     </button>
     <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
       <% @categories.each do |category| %>
@@ -31,15 +31,15 @@
             <%= attachment_image_tag blog, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
             <% end %>
             <div class='indexcard-body'>
-              <h4 class="card-title"><%= blog.title.truncate(10) %></h5>
-              <h6 class="card-text"><%= blog.body.truncate(12) %></h6>
+              <h4 class="card-title"><%= blog.truncate_count(10, "title") %></h5>
+              <h6 class="card-text"><%= blog.truncate_count(10, "body") %></h6>
             </div>
             <div class="indexcard-footer">
-              ♥<%= blog.blog_favorites.count %> Like<br>
-              <%= blog.blog_comments.count %> comment<br>
-               Category: <%= blog.category.name %><br>
+              ♥<%= blog.favorites_count %> Like<br>
+              <%= blog.comments_count %> comment<br>
+               Category: <%= blog.genre %><br>
              Posted by <%= link_to blog.user.name, user_blog_path(blog.user_id) %><br>
-             <%= blog.created_at.strftime('%Y/%m/%d') %><br>
+             <%= create_at_by(blog) %><br>
               <%= link_to 'Find Out More!', blog_details_path(blog), class: "btn btn-primary", position: 'bottom' %>
             </div>
           </div>

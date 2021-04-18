@@ -29,8 +29,13 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @questions =  Question.where(user_id: params[:id])
+    @categories = Category.all
     @user = User.find(params[:id])
+    if params[:category_id]
+      @questions = Question.where(category_id: params[:category_id]).where(user_id: params[:id])
+    else
+      @questions = Question.where(user_id: params[:id])
+    end
   end
 
   def details

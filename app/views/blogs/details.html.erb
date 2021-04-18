@@ -8,16 +8,17 @@
       </div>
       <!-- Author -->
       <div class="lead">
-      by
-      <%= link_to @blog.user.name, user_blog_path(@user) %>
+        by
+        <%= link_to @blog.user.name, user_blog_path(@user) %>
       </div>
         <div class="comments-count" id="blog_<%= @blog.id %>" >
-        <div><%= @blog.blog_comments.count %> comment</div>
+          <div><%= @blog.comments_count %> comment</div>
         </div>
         <div id="blogfavorites_buttons_<%= @blog.id %>"><%= render 'blog_favorites/blog_favorite', blog: @blog %></div>
+        Blog Category : <%= link_to @blog.category.name, blogs_path(category_id: @blog.category.id) %>
         <hr>
         <!-- Date/Time -->
-        Posted on <%= @blog.created_at.strftime('%Y/%m/%d') %>  by <%= @blog.user.name %>
+        Posted on <%= create_at_by(@blog) %>  by <%= @blog.user.name %>
         <!--edit/delete-->
         <% if @blog.user == current_user %>
           <%= link_to 'Edit', edit_blog_path(@blog), class: "btn btn-sm btn-success edit_book" %>

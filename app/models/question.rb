@@ -28,6 +28,26 @@ class Question < ApplicationRecord
 }
   # メッセージでのエラー入力
   validates :category_id, presence: {message: 'category is required！！'}
+  
+  def favorites_count
+    question_favorites.count
+  end
+  
+  def comments_count
+    question_comments.count
+  end
+  
+  def genre
+    category.name
+  end
+  
+  def truncate_count(num, column_type)
+    if column_type == "title"
+      title.truncate(num)
+    else
+      body.truncate(num)
+    end
+  end
 
 
 end

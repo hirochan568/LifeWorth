@@ -11,8 +11,9 @@
           by
           <%= link_to @question.user.name, user_question_path(@user) %>
         </p>
-        <p><%= @question.question_comments.count %> comment</p>
+        <%= @question.comments_count %> comment
         <div id="questionfavorites_buttons_<%= @question.id %>"><%= render 'question_favorites/question_favorite', question: @question %></div>
+        Question Category : <%= link_to @question.category.name, questions_path(category_id: @question.category.id) %>
         <% if @question.solution == true %>
           <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">Status: solved</div>
         <% else %>
@@ -20,7 +21,7 @@
         <% end %>
         <hr>
         <!-- Date/Time -->
-        Posted on <%= @question.created_at.strftime('%Y/%m/%d') %>  by <%= @question.user.name %>
+        Posted on <%= create_at_by(@question) %>  by <%= @question.user.name %>
         <!--edit/delete-->
         <% if @question.user == current_user %>
           <%= link_to 'Edit', edit_question_path(@question), class: "btn btn-sm btn-success edit_book" %>

@@ -28,6 +28,26 @@ class Review < ApplicationRecord
 	validates :body, presence: true, length: {maximum: 2000, minimum: 20}
   # メッセージでのエラー入力
   validates :category_id, presence: {message: 'category is required！！'}
+  
+  def favorites_count
+    review_favorites.count
+  end
+  
+  def comments_count
+    review_comments.count
+  end
+  
+  def genre
+    category.name
+  end
+  
+  def truncate_count(num, column_type)
+    if column_type == "title"
+      title.truncate(num)
+    else
+      body.truncate(num)
+    end
+  end
 
 
 end

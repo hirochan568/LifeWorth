@@ -26,10 +26,10 @@
             <% end %>
         </td>
         <td><%= link_to question_details_path(question) do %>
-          <%= question.title.truncate(10) %>
+          <%= question.truncate_count(10, "title") %>
           <% end %>
         </td>
-        <td><%= question.body.truncate(12) %></td>
+        <td><%= question.truncate_count(12, "body") %></td>
         <td><%= question.category.name %></td>
         <td>
           <div id="questionfavorites_buttons_<%= question.id %>">
@@ -37,7 +37,7 @@
           </div>
         </td>
         <td><%= question.question_comments.count %></td>
-        <td> <%= question.created_at.strftime('%Y/%m/%d') %></td>
+        <td> <%= create_at_by(question) %></td>
 
       </tr>
     <% end %>

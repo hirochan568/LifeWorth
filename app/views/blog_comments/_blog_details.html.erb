@@ -3,7 +3,7 @@
   <div class="media-body">
     <h5 class="mt-0"><%= blog_comment.user.name %> </h5>
     <%= blog_comment.comment %><br>
-    Posted on <%= blog_comment.created_at.strftime('%Y/%m/%d') %>
+    Posted on <%= create_at_by(blog_comment) %>
     <% if blog_comment.user == current_user %>
     <div class="comment-delete">
       <%= link_to "Delete", blog_blog_comment_path(blog, blog_comment), method: :delete, remote: true, class: "btn btn-sm btn-danger destroy_book" %>

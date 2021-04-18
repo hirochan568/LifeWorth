@@ -11,7 +11,7 @@ class Blog < ApplicationRecord
     blog_favorites.where(user_id: user.id).exists?
   end
 
-  # 検索字の要件
+  # 検索時の要件
   def self.search_for(content, method)
     if method == 'perfect'
       Blog.where(title: content, body: content)
@@ -29,5 +29,23 @@ class Blog < ApplicationRecord
   # メッセージでのエラー入力
   validates :category_id, presence: {message: 'category is required！！'}
 
-
+  def favorites_count
+    blog_favorites.count
+  end
+  
+  def comments_count
+    blog_comments.count
+  end
+  
+  def genre
+    category.name
+  end
+  
+  def truncate_count(num, column_type)
+    if column_type == "title"
+      title.truncate(num)
+    else
+      body.truncate(num)
+    end
+  end
 end

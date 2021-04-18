@@ -12,13 +12,14 @@
           <%= link_to @review.user.name, user_review_path(@user) %>
         </p>
         <div class="comments-count" id="review_<%= @review.id %>" >
-        <p><%= @review.review_comments.count %> comment</p>
+        <%= @review.comments_count %> comment
         </div>
-        <div class="review-evaluation" data-score="<%= @review.evaluation %>"></div>
         <div id="reviewfavorites_buttons_<%= @review.id %>"><%= render 'review_favorites/review_favorite', review: @review %></div>
+        Review Category : <%= link_to @review.category.name, reviews_path(category_id: @review.category.id) %>
+        <div class="review-evaluation" data-score="<%= @review.evaluation %>"></div>
         <hr>
         <!-- Date/Time -->
-        Posted on <%= @review.created_at.strftime('%Y/%m/%d') %>  by <%= @review.user.name %>
+        Posted on <%= create_at_by(@review) %>  by <%= @review.user.name %>
         <!--edit/delete-->
         <% if @review.user == current_user %>
           <%= link_to 'Edit', edit_review_path(@review), class: "btn btn-sm btn-success edit_book" %>

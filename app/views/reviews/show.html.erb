@@ -8,7 +8,16 @@
       <%= link_to 'START A Review！',new_review_path(current_user), class: "btn btn-primary btn-lg"%>
     </header>
   <div class="container">
-
+    <div class="btn-group dropright">
+    <button type="button" class="btn btn-secondary dropdown-toggle category-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     Select Category
+    </button>
+    <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+      <% @categories.each do |category| %>
+      <%= link_to category.name, user_review_path(category_id: category.id), class: 'dropdown-item'%>
+      <% end %>
+    </div>
+  </div>
     <div class="row">
 
           <!-- review Entries Column -->
@@ -29,13 +38,13 @@
                 <div class="card-body">
                   <h4 class="card-title"> <%= idx %>article</h4>
                   <div class="review-evaluation" data-score="<%= review.evaluation %>"></div>
-                  <h2 class="card-title"><%= review.title.truncate(35) %></h2>
-                  <p class="card-text"><%= review.body.truncate(200) %></p>
+                  <h2 class="card-title"><%= review.truncate_count(10, "title") %></h2>
+                  <p class="card-text"><%= review.truncate_count(150, "body") %></p>
                   <%= link_to 'Read More →', review_details_path(review), class: "btn btn-primary", role: "" %>
 
                 </div>
                 <div class="card-footer text-muted">
-                  <pre>Posted on <%= review.created_at.strftime('%Y/%m/%d') %>  by <%= review.user.name %>　　<%= review.review_comments.count %> comment 　 ♥<%= review.review_favorites.count %> Like    Category: <%= review.category.name %></pre>
+                  <pre>Posted on <%= create_at_by(review) %>  by <%= review.user.name %>　　<%= review.comments_count %> comment 　 ♥<%= review.favorites_count %> Like    Category: <%= review.genre %></pre>
 
                   <div>
                   <% if review.user == current_user %>

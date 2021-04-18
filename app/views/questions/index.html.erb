@@ -10,7 +10,7 @@
 
   <div class="btn-group dropright">
     <button type="button" class="btn btn-secondary dropdown-toggle category-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-     By category
+     Select Category
     </button>
     <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
       <% @categories.each do |category| %>
@@ -29,8 +29,8 @@
         <%= attachment_image_tag question, :image , width: 'auto', height: 'auto', fallback: "no_image.jpg", alt: "", class: "card-img-top"%>
         <% end %>
           <div class='indexcard-body'>
-            <h4 class="card-title"><%= question.title.truncate(10) %></h5>
-            <h6 class="card-text"><%= question.body.truncate(12) %></h6>
+            <h4 class="card-title"><%= question.truncate_count(10, "title") %></h5>
+            <h6 class="card-text"><%= question.truncate_count(12, "body") %></h6>
           </div>
           <div class="indexcard-footer">
             <% if question.solution == true %>
@@ -38,11 +38,11 @@
             <% else %>
             <div class="text-success text-success font-weight-bolder", style="font-size: 23px;">Status: Unresolved</div>
             <% end %>
-            ♥<%= question.question_favorites.count %> Like<br>
-            <%= question.question_comments.count %> comment<br>
-             Category: <%= question.category.name %><br>
+            ♥<%= question.favorites_count %> Like<br>
+            <%= question.comments_count %> comment<br>
+             Category: <%= question.genre %><br>
            Posted by <%= link_to question.user.name, user_question_path(question.user_id) %><br>
-           <%= question.created_at.strftime('%Y/%m/%d') %><br>
+           <%= create_at_by(question) %><br>
             <%= link_to 'Find Out More!', question_details_path(question), class: "btn btn-primary", position: 'bottom' %>
           </div>
         </div>

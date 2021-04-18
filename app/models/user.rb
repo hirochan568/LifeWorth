@@ -30,4 +30,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
 
+  def  current_user?(current_user)
+    self == current_user
+  end
+
 end

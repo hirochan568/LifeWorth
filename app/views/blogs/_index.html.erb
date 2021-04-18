@@ -19,18 +19,18 @@
         </td>
         <td><%= link_to blog.user.name, user_blog_path(blog.user_id) %></td>
         <td><%= link_to blog_details_path(blog) do %>
-          <%= blog.title.truncate(10) %>
+          <%= blog.truncate_count(10, "title") %>
           <% end %>
         </td>
-        <td><%= blog.body.truncate(12) %></td>
-        <td><%= blog.category.name %></td>
+        <td><%= blog.truncate_count(12, "body") %></td>
+        <td><%= blog.genre %></td>
         <td>
           <div id="blogfavorites_buttons_<%= blog.id %>">
             <%= render 'blog_favorites/blog_favorite', blog: blog %>
           </div>
         </td>
-        <td><%= blog.blog_comments.count %></td>
-        <td> <%= blog.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= blog.comments_count %></td>
+        <td><%= create_at_by(blog) %></td>
 
       </tr>
     <% end %>

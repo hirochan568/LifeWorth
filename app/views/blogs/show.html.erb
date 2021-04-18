@@ -8,7 +8,16 @@
       <%= link_to 'START A BLOG！',new_blog_path(current_user), class: "btn btn-primary btn-lg"%>
     </header>
   <div class="container">
-
+    <div class="btn-group dropright">
+    <button type="button" class="btn btn-secondary dropdown-toggle category-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     Select Category
+    </button>
+    <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+      <% @categories.each do |category| %>
+      <%= link_to category.name, user_blog_path(category_id: category.id), class: 'dropdown-item'%>
+      <% end %>
+    </div>
+  </div>
     <div class="row">
 
           <!-- Blog Entries Column -->
@@ -28,13 +37,13 @@
                 <% end %>
                 <div class="card-body">
                   <h4 class="card-title"> <%= idx %>article</h4>
-                  <h2 class="card-title"><%= blog.title.truncate(35) %></h2>
-                  <div class="card-text"><%= blog.body.truncate(200) %></div>
+                  <h2 class="card-title"><%= blog.truncate_count(10, "title") %></h2>
+                  <div class="card-text"><%= blog.truncate_count(150, "body") %></div>
                   <%= link_to 'Read More →', blog_details_path(blog), class: "btn btn-primary", role: "" %>
 
                 </div>
                 <div class="card-footer text-muted">
-                  <pre>Posted on <%= blog.created_at.strftime('%Y/%m/%d') %>  by <%= blog.user.name %>　　<%= blog.blog_comments.count %> comment 　 ♥<%= blog.blog_favorites.count %> Like    Category: <%= blog.category.name %></pre>
+                  <pre>Posted on <%= create_at_by(blog) %>  by <%= blog.user.name %>　　<%= blog.comments_count %> comment 　 ♥<%= blog.favorites_count %> Like    Category: <%= blog.genre %></pre>
 
                   <div>
                   <% if blog.user == current_user %>

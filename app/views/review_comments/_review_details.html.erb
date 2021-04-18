@@ -8,7 +8,7 @@
 
 
             <%= review_comment.comment %><br>
-            Posted on <%= review_comment.created_at.strftime('%Y/%m/%d') %>
+            Posted on <%= create_at_by(review_comment) %>
             <% if review_comment.user == current_user %>
             <div class="comment-delete">
             <%= link_to "Delete", review_review_comment_path(review, review_comment), method: :delete, remote: true, class: "btn btn-sm btn-danger destroy_book" %>

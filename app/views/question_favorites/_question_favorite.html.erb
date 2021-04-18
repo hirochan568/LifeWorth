@@ -1,13 +1,9 @@
  <% if question.favorited_by?(current_user) %>
-    <p>
       <%= link_to question_question_favorites_path(question), method: :delete, remote: true do %>
         ♥<%= question.question_favorites.count %> good
       <% end %>
-    </p>
     <% else %>
-    <p>
       <%= link_to question_question_favorites_path(question), method: :post, remote: true do %>
         ♡<%= question.question_favorites.count %> good
       <% end %>
-    </p>
   <% end %>

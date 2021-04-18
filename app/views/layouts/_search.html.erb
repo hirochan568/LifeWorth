@@ -1,6 +1,6 @@
 
   <%= form_with url: search_path, method: :get, local: true do |f| %>
-    <%= f.text_field :content, class: "form-control mr-sm-2 form-control-search",  placeholder: "　☞　Search  by  input  text   in   me!     ☜　　" %>
+    <%= f.text_field :content, class: "form-control mr-sm-2 form-control-search",  placeholder: "🔍　☞　Search  by  input  text   in   me!     ☜　　" %>
   <div class='btn-search2'>
     <%= f.select :model, options_for_select({ "Blog" => "blog", "Review" => "review", "Question" => "question" }), class: "form-control mr-sm-2", type: "text" %>
     <%= f.select :method, options_for_select({ "perfect" => "perfect", "forward" => "forward", "backward" => "backward", "partial" => "partial" }), class: "form-control mr-sm-2", type: "text" %>

@@ -28,8 +28,14 @@ class BlogsController < ApplicationController
   end
 
   def show
-    @blogs =  Blog.where(user_id: params[:id])
+    @categories = Category.all
     @user = User.find(params[:id])
+    if params[:category_id]
+      @blogs = Blog.where(category_id: params[:category_id]).where(user_id: params[:id])
+      #別の記載方法： @blogs = Blog.where(category_id: params[:category_id], user_id: params[:id])
+    else
+      @blogs = Blog.where(user_id: params[:id])
+    end
   end
 
   def details
@@ -78,11 +84,6 @@ class BlogsController < ApplicationController
     @blogs =  Blog.where(id: blog_ids)
     #1行にすると@blogs =  Blog.where(id: BlogFavorite.where(user_id: current_user.id).select("blog_id as id"))
     #別の書き方 @blogs =  Blog.where(id: current_user.blog_favorites.map{|bf| bf.blog_id})
-  end
-
-  def category
-
-    # @blogs = Blog.where(category_id: category.id)
   end
 
   private
